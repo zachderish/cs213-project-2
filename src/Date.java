@@ -1,10 +1,11 @@
 import java.util.Calendar;
 //REUSED CODE FROM DATE CLASS WILL MAKE CHANGES LATER TO FIT
+
 /**
  * Define the abstract data type Date and its methods
  * @author Kenrick Eagar, Zachary Derish
  */
-public class Date implements Comparable<Date>{
+public class Date implements Comparable<Date> {
 
     private int year;
     private int month;
@@ -21,7 +22,7 @@ public class Date implements Comparable<Date>{
 
     private final Calendar RIGHT_NOW = Calendar.getInstance();
     private final int CURRENT_YEAR = RIGHT_NOW.get(Calendar.YEAR);
-    private final int CURRENT_MONTH = RIGHT_NOW.get(Calendar.MONTH)+1;
+    private final int CURRENT_MONTH = RIGHT_NOW.get(Calendar.MONTH) + 1;
     private final int CURRENT_DAY = RIGHT_NOW.get(Calendar.DAY_OF_MONTH);
 
     private final int SIX_MONTHS = 6;
@@ -29,18 +30,20 @@ public class Date implements Comparable<Date>{
 
     /**
      * Date constructor
-     * @param year the year associated with the Date
+     *
+     * @param year  the year associated with the Date
      * @param month the month associated with the Date
-     * @param day the day associated with the Date
+     * @param day   the day associated with the Date
      */
-    public Date(int year, int month, int day){
+    public Date(int year, int month, int day) {
         this.year = year;
-        this.month = month-1;
+        this.month = month - 1;
         this.day = day;
     }
 
     /**
      * returns true if it's a leap year false otherwise
+     *
      * @param year the year to be checked for leap year
      * @return true if leap year, false otherwise
      */
@@ -53,19 +56,18 @@ public class Date implements Comparable<Date>{
 
     /**
      * Return number of days in a month based on month itself and leap year status
+     *
      * @param month month of the year represented as int
-     * @param year year represented as int
+     * @param year  year represented as int
      * @return int of number of days contained in month
      */
     public int numberOfDays(int month, int year) { //returns the number of days given the month and year
-        if(month == APRIL || month == JUNE || month == SEPTEMBER || month == NOVEMBER){ //if its any of those months they have 30 days
+        if (month == APRIL || month == JUNE || month == SEPTEMBER || month == NOVEMBER) { //if its any of those months they have 30 days
             return 30;
-        }
-        else if (month != FEBRUARY){ // all the rest of the months besides February have 31 days
+        } else if (month != FEBRUARY) { // all the rest of the months besides February have 31 days
             return 31;
-        }
-        else {
-            if(isLeapYear(year)) { // depending on if February is a leap year it will either have 28 or 29 days
+        } else {
+            if (isLeapYear(year)) { // depending on if February is a leap year it will either have 28 or 29 days
                 return 29;
             }
         }
@@ -75,9 +77,10 @@ public class Date implements Comparable<Date>{
 
     /**
      * Check the Date object to ensure year month and day are all valid inputs
+     *
      * @return true if date is within six months and not before current day, false otherwise
      */
-    public boolean isValid(){
+    public boolean isValid() {
         int inputMonth = this.month;
         int inputDay = this.day;
         int inputYear = this.year;
@@ -89,8 +92,10 @@ public class Date implements Comparable<Date>{
         return validDay_Month;
 
     }
-     /**
+
+    /**
      * Check the Date object to ensure it is being scheduled within 6 month timeframe
+     *
      * @return true if date is within six months and not before current day, false otherwise
      */
     public String within6Months() {
@@ -103,10 +108,10 @@ public class Date implements Comparable<Date>{
         scheduleLimit.add(Calendar.MONTH, SIX_MONTHS);
         scheduleLimit.add(Calendar.DAY_OF_MONTH, ONE_DAY);
 
-        if(!scheduleDate.before(scheduleLimit)) {
+        if (!scheduleDate.before(scheduleLimit)) {
             return "Event date must be within 6 months!";
         }
-        if(!scheduleDate.after(RIGHT_NOW)) {
+        if (!scheduleDate.after(RIGHT_NOW)) {
             return "Event date must be a future date!";
         }
         return "VALID";
@@ -114,6 +119,7 @@ public class Date implements Comparable<Date>{
 
     /**
      * compare two date objects based on year, month and day
+     *
      * @param date the second Date object in the comparison
      * @return 1 if date1 > date2, -1 if date1 < date2, and 0 otherwise
      */
@@ -139,9 +145,11 @@ public class Date implements Comparable<Date>{
 
     /**
      * Getter method for Date object
+     *
      * @return String format of this Date object
      */
     public String getDate() {
-        String finalDate = (this.month+1) + "/" + this.day + "/" + this.year;
+        String finalDate = (this.month + 1) + "/" + this.day + "/" + this.year;
         return finalDate;
     }
+}

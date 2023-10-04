@@ -1,17 +1,29 @@
 public class Checking extends Account {
 
-  public static final double INTEREST_RATE = 0.01;
-  public static final double MONTHLY_FEE = 12.00;
+  private static final double INTEREST_RATE = 0.01;
+  private static final double MONTHLY_FEE = 12.00;
 
-  
-@Override
-public double monthlyInterest(){
-  return INTEREST_RATE;
-}
-  
-@Override
-public double monthlyFee(){
-  return MONTHLY_FEE;
-}
+  /**
+   * Get the INTEREST_RATE for a Checking account.
+   * @return INTEREST_RATE constant.
+   */
+  @Override
+  public double monthlyInterest(){
+    return INTEREST_RATE;
+  }
+
+  /**
+   * Get the MONTHLY_FEE for a Checking account.
+   * @return MONTHLY_FEE constant if not a loyal customer, 0.0 otherwise.
+   */
+  @Override
+  public double monthlyFee(){
+    int accountBalanceWaiver = 1000;
+    double waivedFee = 0.0;
+    if (balance >= accountBalanceWaiver) {
+      return waivedFee;
+    }
+    return MONTHLY_FEE;
+  }
   
 }

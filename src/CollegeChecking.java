@@ -5,6 +5,17 @@ public class CollegeChecking extends Checking {
     private Campus campus; //campus code
 
     /**
+     * Constructor for College Checking object.
+     * @param holder Profile object of account holder.
+     * @param balance integer for account.
+     * @param campus Campus code.
+     */
+    public CollegeChecking(Profile holder, int balance, Campus campus) {
+        super(holder, balance);
+        this.campus = campus;
+    }
+
+    /**
      * Get INTEREST_RATE for a CollegeChecking account.
      * @return INTEREST_RATE constant.
      */

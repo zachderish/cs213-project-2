@@ -2,23 +2,25 @@ public class AccountDatabase {
     private Account [] accounts; //list of various types of accounts
     private int numAcct; //number of accounts in the array
     public static final int NOT_FOUND = -1;
+
     /**
      * AccountDatabase Constructor
-     * @param array of account objects
-     * @param int number of accounts in array
+     * @param accounts array of account objects
+     * @param numAcct integer number of accounts in array
      */
     public AccountDatabase(Account[] accounts, int numAcct){
-        this.accounts = accounts;
-        this.numAcct = numAcct;
-
+        this.accounts = new Account[4];
+        int initialSize = 0;
+        this.numAcct = initialSize;
     }
+
     /**
      * Search for an account in the array
-     * @param Account object
+     * @param account Account object
      * @return integer representing index of desired element in array
      */
     private int find(Account account) {
-        for(int i = 0; i<numAcct; i++){
+        for (int i = 0; i < this.numAcct; i++) {
             if(this.accounts[i].equals(account)){
                 return i;
             }
@@ -28,30 +30,27 @@ public class AccountDatabase {
 
     /**
      * Grow the array capacity by 4
-     *
      */
     private void grow(){
-        int n = numAcct;
+        int n = this.numAcct;
         Account[] temp = new Account[n + 4];
-        for(int i =0; i<n; i++){
+        for (int i = 0; i < n; i++) {
             temp[i] = this.accounts[i];
         }
 
         this.accounts = new Account[n+4];
         this.accounts = temp;
     }
-/**
- * Checks to see if given account is en element of accounts array
- * @param account object we are searching for
- * @return boolean indicating true if it exists in array false otherwise
- */
-    public boolean contains(Account account){//overload if necessary
-        for(int i =0; i<numAcct; i++){
-            if(!this.accounts[i].equals(account)){
-                return false;
-            }
-        }
 
+    /**
+    *  Checks to see if given account is en element of accounts array
+    * @param account object we are searching for
+    * @return boolean indicating true if it exists in array false otherwise
+    */
+    public boolean contains(Account account){//overload if necessary
+        if (this.find(account) == NOT_FOUND) {
+            return false;
+        }
         return true;
     }
 
@@ -65,23 +64,27 @@ public class AccountDatabase {
         }
         return true;
     }
+
     /**
      * Adds new account to accounts array
      * @param account object we are adding
      * @return boolean indicating true if it was successfully added, false otherwise
      */
-    public boolean open(Account account){//add a new account
-        if(!hasSpace()){
-            grow();
+    public boolean open(Account account){
+        if (this.contains(account)) {
+            return false;
         }
-       for(int i =0; i<this.account.length; i++){
-           if(accounts[i] == null){
-               accounts[i] = account;
-               numAcct++;
-               return true;
-           }
-       }
-return false;//never really a situation where we cant add an event
+        if (!this.hasSpace()) {
+            this.grow();
+        }
+        for (int i = 0; i < this.accounts.length; i++) {
+            if(this.accounts[i] == null){
+                this.accounts[i] = account;
+                this.numAcct++;
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -89,15 +92,17 @@ return false;//never really a situation where we cant add an event
      * @param account object we will be removing
      * @return boolean indicating true if account has been successfully removed, false otherwise
      */
-    public boolean close(Account account){//remove the given account
-    int index = find(account);
-    if(index != NOT_FOUND){
-        accounts[index] = null;
-        numAcct--;
-        return true;
-    }
+    public boolean close(Account account){
+        int index = this.find(account);
+        if(index != NOT_FOUND){
+            for (int i = index; i < this.accounts.length - 1; i++) {
+                this.accounts[i] = this.accounts[i + 1];
+            }
+            this.numAcct--;
+            return true;
+        }
 
-    return false;
+        return false;
     }
 
     /**
@@ -107,7 +112,7 @@ return false;//never really a situation where we cant add an event
      */
 
     //THIS CODE IS BASICALLY PSEUDO DID NOT IMPLEMENT SOME OF THE METHODS USED IN THIS YET WILL UPDATE LATER
-    public boolean withdraw(Account account){ //the account input will be a temp account created by system.in
+    /*public boolean withdraw(Account account){ //the account input will be a temp account created by system.in
        String name = account.getName();
         String lastName = accounnt.getLastName();
         Date dateofBirth = account.getDate();
@@ -129,8 +134,44 @@ return false;//never really a situation where we cant add an event
         
 
     } //false if insufficient fund
+    */
+
     public void deposit(Account account){}
-    public void printSorted(){} //sort by account type and profile
+
+    // will need to add polymorphic toString methods
+    public void printSorted(){
+        for (int i = 0; i < this.numAcct; i++) {
+            System.out.println(this.accounts[i].balance);
+        }
+    }
     public void printFeesAndInterests(){} //calculate interests/fees
     public void printUpdatedBalances(){} //apply the interests/fees*/
+
+    // Testbed main, will be DELETED later
+    public static void main(String[] args) {
+        // testing open
+        Account[] accounts = {};
+        AccountDatabase accounts1 = new AccountDatabase(accounts, 0);
+
+        Date dob1 = new Date(2002, 0, 22);
+        Profile profile1 = new Profile("Zach", "D", dob1);
+        Checking checkingAccount1 = new Checking(profile1, 1000);
+        accounts1.open(checkingAccount1);
+
+        Date dob2 = new Date(2004, 8, 9);
+        Profile profile2 = new Profile("Tony", "D", dob2);
+        Checking checkingAccount2 = new Checking(profile2, 4000);
+        accounts1.open(checkingAccount2);
+
+        accounts1.printSorted();
+        System.out.println("End of test1");
+
+        // testing close
+        accounts1.close(checkingAccount1);
+
+        accounts1.printSorted();
+        System.out.println("End of test2");
+
+    }
+
 }

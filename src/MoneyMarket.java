@@ -5,8 +5,16 @@ public class MoneyMarket extends Savings {
 
     private int withdrawal; //number of withdrawals
 
-    public MoneyMarket(){
-        super();
+    /**
+     * Constructor for Money Market object.
+     * @param holder Profile object of account holder.
+     * @param balance integer for account.
+     * @param isLoyal boolean for loyal customer status.
+     * @param withdrawal integer for number of withdrawals.
+     */
+    public MoneyMarket(Profile holder, int balance, boolean isLoyal, int withdrawal){
+        super(holder, balance, isLoyal);
+        this.withdrawal = withdrawal;
 
     }
     /**

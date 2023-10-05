@@ -4,6 +4,15 @@ public class Checking extends Account {
   private static final double MONTHLY_FEE = 12.00;
 
   /**
+   * Constructor for Checking object.
+   * @param holder Profile object of account holder.
+   * @param balance integer for account.
+   */
+  public Checking(Profile holder, double balance) {
+    super(holder, balance);
+  }
+
+  /**
    * Get the INTEREST_RATE for a Checking account.
    * @return INTEREST_RATE constant.
    */
@@ -24,10 +33,6 @@ public class Checking extends Account {
       return waivedFee;
     }
     return MONTHLY_FEE;
-  }
-
-  public int compareTo(){
-    return 0;
   }
   
 }

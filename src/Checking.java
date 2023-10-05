@@ -25,5 +25,9 @@ public class Checking extends Account {
     }
     return MONTHLY_FEE;
   }
+
+  public int compareTo(){
+    return 0;
+  }
   
 }

@@ -5,6 +5,10 @@ public class MoneyMarket extends Savings {
 
     private int withdrawal; //number of withdrawals
 
+    public MoneyMarket(){
+        super();
+
+    }
     /**
      * Get the INTEREST_RATE for a MoneyMarket account.
      * @return INTEREST_RATE constant if not a loyal customer, 0.0475 otherwise.

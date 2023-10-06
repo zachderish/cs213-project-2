@@ -4,6 +4,7 @@ public abstract class Account implements Comparable<Account> {
     public abstract double monthlyInterest();
     public abstract double monthlyFee();
 
+    public abstract String accountType();
     /**
      * Account object constructor.
      * @param holder Profile object of account holder.
@@ -29,6 +30,10 @@ public abstract class Account implements Comparable<Account> {
         return this.balance;
     }
 
+    public void setBalance(double newBalance){
+        this.balance = newBalance;
+    }
+
     /**
      * compareTo method for Account objects by account type and holder information.
      * @param account the object to be compared.
@@ -46,6 +51,7 @@ public abstract class Account implements Comparable<Account> {
             return 0;
         }
     }
+    //will be revised
     @Override
     public boolean equals(Object obj){
         if(obj instanceof Account){

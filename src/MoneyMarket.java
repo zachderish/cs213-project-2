@@ -58,6 +58,12 @@ public class MoneyMarket extends Savings {
     }
 
     @Override
+    public String accountType(){
+        return "MONEY_MARKET";
+    }
+
+    //will be revised
+    @Override
     public boolean equals(Object obj){
         if(obj instanceof MoneyMarket){
             MoneyMarket account = (MoneyMarket)obj;

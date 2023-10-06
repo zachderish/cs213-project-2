@@ -29,6 +29,11 @@ public class Savings extends Account {
         return INTEREST_RATE;
     }
 
+    @Override
+    public String accountType(){
+        return "SAVINGS";
+    }
+
     /**
      * Get the MONTHLY_FEE for a Savings account.
      * @return MONTHLY_FEE constant if balance < 500, 0.0 otherwise.

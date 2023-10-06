@@ -3,6 +3,7 @@ public class Checking extends Account {
   private static final double INTEREST_RATE = 0.01;
   private static final double MONTHLY_FEE = 12.00;
 
+
   /**
    * Constructor for Checking object.
    * @param holder Profile object of account holder.
@@ -35,6 +36,12 @@ public class Checking extends Account {
     return MONTHLY_FEE;
   }
 
+  @Override
+  public String accountType(){
+    return "CHECKING";
+  }
+
+//will be revised
   @Override
   public boolean equals(Object obj){
     if(obj instanceof Checking){

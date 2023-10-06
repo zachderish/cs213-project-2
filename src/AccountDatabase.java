@@ -28,6 +28,22 @@ public class AccountDatabase {
         return NOT_FOUND;
     }
 
+    private int findByElements(String fname, String lname, Date dob, String accountType){
+        for(int i =0; i<numAcct; i++){
+            String firstName = accounts[i].getHolder().getFname();
+            String lastName = accounts[i].getHolder().getLname();
+            Date dateOfBirth = accounts[i].getHolder().getDob();
+            String accType = accounts[i].accountType();
+            if(firstName.equals(fname) && lastName.equals(lname)){ //checking to see if account exists with name
+                if(dateOfBirth.compareTo(dob) == 0 && accType.equals(accountType)){ //if it exists then we look for dob and account type
+                    return i;
+                }
+            }
+        }
+        return NOT_FOUND;
+    }
+
+
     /**
      * Grow the array capacity by 4
      */
@@ -105,28 +121,31 @@ public class AccountDatabase {
         return false;
     }
 
+
+
     /**
      * Method to withdraw money from specified account
      * @param account object we will be withdrawing money from
      * @return boolean indicating true if withdrawal has been successful false otherwise
      */
 
-    //THIS CODE IS BASICALLY PSEUDO DID NOT IMPLEMENT SOME OF THE METHODS USED IN THIS YET WILL UPDATE LATER
-    /*public boolean withdraw(Account account){ //the account input will be a temp account created by system.in
+    //code implemented will test soon
+    public boolean withdraw(Account account){ //the account input will be a temp account created by system.in
        String firstName = account.getHolder().getFname();
         String lastName = account.getHolder().getLname();
         Date dateOfBirth = account.getHolder().getDob();
-        double withdrawalAmount = account.getBalance();
+        String accountType = account.accountType();
 
-       int index = findbyelements(String firstName, lastName, dateOfBirth); //we extract the data we need to search if account exists
+        double withdrawalAmount = account.getBalance();
+       int index = findByElements(firstName, lastName, dateOfBirth, accountType); //we extract the data we need to search if account exists
         if(index != NOT_FOUND){ //as long as it exists
-        double currentBalance = accounts[index]; //get the current balance of the real account
+        double currentBalance = accounts[index].getBalance(); //get the current balance of the real account
         if(currentBalance >= withdrawalAmount){ //compare amounts and make sure theres enough money to withdraw
         accounts[index].setBalance(currentBalance - withdrawlAmount); //set the balance of the real account
             return true; 
         }
         }
-        return false //if it dosent exist in the array or theres insufficient funds return false
+        return false;//if it dosent exist in the array or theres insufficient funds return false
 
 
         
@@ -134,7 +153,7 @@ public class AccountDatabase {
         
 
     } //false if insufficient fund
-*/
+
 
     public void deposit(Account account){}
 

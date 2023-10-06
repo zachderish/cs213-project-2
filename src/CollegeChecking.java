@@ -34,6 +34,12 @@ public class CollegeChecking extends Checking {
     }
 
     @Override
+    public String accountType(){
+        return "COLLEGE_CHECKING";
+    }
+
+    //will be revised
+    @Override
     public boolean equals(Object obj){
         if(obj instanceof CollegeChecking){
             CollegeChecking account = (CollegeChecking)obj;

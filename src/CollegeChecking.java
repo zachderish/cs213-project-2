@@ -32,4 +32,15 @@ public class CollegeChecking extends Checking {
     public double monthlyFee(){
         return MONTHLY_FEE;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if(obj instanceof CollegeChecking){
+            CollegeChecking account = (CollegeChecking)obj;
+            if(compareTo(account) == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

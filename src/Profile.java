@@ -16,6 +16,30 @@ public class Profile implements Comparable<Profile>{
     }
 
     /**
+     *Getter method to retrieve first name of a profile
+     * @return String representation of first name
+     */
+    public String getFname(){
+        return this.fname;
+    }
+
+    /**
+     *Getter method to retrieve last name of a profile
+     * @return String representation of last name
+     */
+    public String getLname(){
+        return this.lname;
+    }
+
+    /**
+     *Getter method to retrieve date of birth of a profile
+     * @return Date object representing date of birth of profile
+     */
+    public Date getDob(){
+        return this.dob;
+    }
+
+    /**
      * compareTo method for Profile objects by comparing last name, first name and date of birth.
      * @param profile the object to be compared.
      * @return 1 if this.profile is greater, -1 if this.profile is less than profile, 0 otherwise.

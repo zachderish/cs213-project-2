@@ -43,4 +43,15 @@ public class Savings extends Account {
         }
         return MONTHLY_FEE;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if(obj instanceof Savings){
+            Savings account = (Savings)obj;
+            if(compareTo(account) == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

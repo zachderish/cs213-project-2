@@ -56,4 +56,15 @@ public class MoneyMarket extends Savings {
         }
 
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if(obj instanceof MoneyMarket){
+            MoneyMarket account = (MoneyMarket)obj;
+            if(compareTo(account) == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -113,12 +113,12 @@ public class AccountDatabase {
 
     //THIS CODE IS BASICALLY PSEUDO DID NOT IMPLEMENT SOME OF THE METHODS USED IN THIS YET WILL UPDATE LATER
     /*public boolean withdraw(Account account){ //the account input will be a temp account created by system.in
-       String name = account.getName();
-        String lastName = accounnt.getLastName();
-        Date dateofBirth = account.getDate();
+       String firstName = account.getHolder().getFname();
+        String lastName = account.getHolder().getLname();
+        Date dateOfBirth = account.getHolder().getDob();
         double withdrawalAmount = account.getBalance();
 
-       int index = findbyelements(String name, lastname, dateofBirth); //we extract the data we need to search if account exists
+       int index = findbyelements(String firstName, lastName, dateOfBirth); //we extract the data we need to search if account exists
         if(index != NOT_FOUND){ //as long as it exists
         double currentBalance = accounts[index]; //get the current balance of the real account
         if(currentBalance >= withdrawalAmount){ //compare amounts and make sure theres enough money to withdraw
@@ -128,13 +128,13 @@ public class AccountDatabase {
         }
         return false //if it dosent exist in the array or theres insufficient funds return false
 
-        
+
         
     
         
 
     } //false if insufficient fund
-    */
+*/
 
     public void deposit(Account account){}
 

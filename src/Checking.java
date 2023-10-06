@@ -34,5 +34,16 @@ public class Checking extends Account {
     }
     return MONTHLY_FEE;
   }
+
+  @Override
+  public boolean equals(Object obj){
+    if(obj instanceof Checking){
+      Checking account = (Checking)obj;
+      if(compareTo(account) == 0) {
+        return true;
+      }
+    }
+    return false;
+  }
   
 }

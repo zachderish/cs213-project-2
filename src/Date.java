@@ -41,6 +41,14 @@ public class Date implements Comparable<Date> {
         this.day = day;
     }
 
+    public Date(String date){
+        String[] temp = date.split("/");
+        this.month = Integer.parseInt(temp[0])-1;
+        this.day = Integer.parseInt(temp[1]);
+        this.year = Integer.parseInt(temp[2]);
+
+    }
+
     /**
      * returns true if it's a leap year false otherwise
      *
@@ -152,4 +160,6 @@ public class Date implements Comparable<Date> {
         String finalDate = (this.month + 1) + "/" + this.day + "/" + this.year;
         return finalDate;
     }
+
+
 }

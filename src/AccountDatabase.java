@@ -5,10 +5,8 @@ public class AccountDatabase {
 
     /**
      * AccountDatabase Constructor
-     * @param accounts array of account objects
-     * @param numAcct integer number of accounts in array
      */
-    public AccountDatabase(Account[] accounts, int numAcct){
+    public AccountDatabase(){
         this.accounts = new Account[4];
         int initialSize = 0;
         this.numAcct = initialSize;
@@ -29,7 +27,7 @@ public class AccountDatabase {
     }
 
     private int findByElements(String fname, String lname, Date dob, String accountType){
-        for(int i =0; i<numAcct; i++){
+        for(int i = 0; i < numAcct; i++){
             String firstName = accounts[i].getHolder().getFname();
             String lastName = accounts[i].getHolder().getLname();
             Date dateOfBirth = accounts[i].getHolder().getDob();
@@ -124,60 +122,62 @@ public class AccountDatabase {
 
 
     /**
-     * Method to withdraw money from specified account
-     * @param account object we will be withdrawing money from
-     * @return boolean indicating true if withdrawal has been successful false otherwise
+     * Method to withdraw money from specified account.
+     * @param account object we will be withdrawing money from.
+     * @return boolean indicating true if withdrawal has been successful false otherwise.
      */
-
-    //code implemented will test soon
     public boolean withdraw(Account account){ //the account input will be a temp account created by system.in
-       String firstName = account.getHolder().getFname();
+        String firstName = account.getHolder().getFname();
         String lastName = account.getHolder().getLname();
         Date dateOfBirth = account.getHolder().getDob();
         String accountType = account.accountType();
 
-        double withdrawalAmount = account.getBalance();
-       int index = findByElements(firstName, lastName, dateOfBirth, accountType); //we extract the data we need to search if account exists
+        double newBalance = account.getBalance();
+        int index = findByElements(firstName, lastName, dateOfBirth, accountType); //we extract the data we need to search if account exists
         if(index != NOT_FOUND){ //as long as it exists
-        double currentBalance = accounts[index].getBalance(); //get the current balance of the real account
-        if(currentBalance >= withdrawalAmount){ //compare amounts and make sure theres enough money to withdraw
-        accounts[index].setBalance(currentBalance - withdrawlAmount); //set the balance of the real account
-            return true; 
-        }
+            double currentBalance = accounts[index].getBalance(); //get the current balance of the real account
+            int balanceLimit = 0;
+            if(newBalance >= balanceLimit){ //compare amounts and make sure theres enough money to withdraw
+                accounts[index].setBalance(newBalance); //set the balance of the real account
+                return true;
+            }
         }
         return false;//if it dosent exist in the array or theres insufficient funds return false
-
-
-        
-    
-        
-
     } //false if insufficient fund
 
-
-    public void deposit(Account account){}
+    /**
+     * Method to deposit money from specified account.
+     * @param account the account object that is receiving the deposit.
+     */
+    public void deposit(Account account){
+        double newBalance = account.getBalance();
+        int index = find(account); //we extract the data we need to search if account exists
+        if(index != NOT_FOUND) { //as long as it exists
+            accounts[index].setBalance(newBalance); //set the balance of the real account
+        }
+    }
 
     // will need to add polymorphic toString methods
     public void printSorted(){
         for (int i = 0; i < this.numAcct; i++) {
-            System.out.println(this.accounts[i].balance);
+            System.out.println(this.accounts[i].toString());
         }
     }
+    /*
     public void printFeesAndInterests(){} //calculate interests/fees
     public void printUpdatedBalances(){} //apply the interests/fees*/
 
     // Testbed main, will be DELETED later
     public static void main(String[] args) {
         // testing open
-        Account[] accounts = {};
-        AccountDatabase accounts1 = new AccountDatabase(accounts, 0);
+        AccountDatabase accounts1 = new AccountDatabase();
 
-        Date dob1 = new Date(2002, 0, 22);
+        Date dob1 = new Date(2002, 1, 22);
         Profile profile1 = new Profile("Zach", "D", dob1);
         Checking checkingAccount1 = new Checking(profile1, 1000);
         accounts1.open(checkingAccount1);
 
-        Date dob2 = new Date(2004, 8, 9);
+        Date dob2 = new Date(2004, 10, 9);
         Profile profile2 = new Profile("Tony", "D", dob2);
         Checking checkingAccount2 = new Checking(profile2, 4000);
         accounts1.open(checkingAccount2);
@@ -191,6 +191,20 @@ public class AccountDatabase {
         accounts1.printSorted();
         System.out.println("End of test2");
 
+        // testing withdrawal
+        Date dob3 = new Date(2004, 10, 9);
+        Profile profile3 = new Profile("Tony", "D", dob3);
+        Checking checkingAccount3 = new Checking(profile3, 1000);
+        boolean withdrawal = accounts1.withdraw(checkingAccount3);
+        System.out.println(withdrawal);
+        System.out.println(checkingAccount2.getBalance());
+
+        // testing deposit
+        Date dob4 = new Date(2004, 10, 9);
+        Profile profile4 = new Profile("Tony", "D", dob4);
+        Checking checkingAccount4 = new Checking(profile4, 5000);
+        accounts1.deposit(checkingAccount4);
+        System.out.println(checkingAccount2.getBalance());
     }
 
 }

@@ -59,7 +59,7 @@ public class MoneyMarket extends Savings {
 
     @Override
     public String accountType(){
-        return "MONEY_MARKET";
+        return "Money Market";
     }
 
     //will be revised
@@ -72,5 +72,13 @@ public class MoneyMarket extends Savings {
             }
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        String savingsInfo = super.toString();
+        savingsInfo = "Money Market::" + savingsInfo;
+        savingsInfo += "::withdrawal: " + this.withdrawal;
+        return savingsInfo;
     }
 }

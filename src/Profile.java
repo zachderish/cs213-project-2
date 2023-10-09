@@ -68,4 +68,11 @@ public class Profile implements Comparable<Profile>{
         }
     }
 
+    @Override
+    public String toString() {
+        String name = this.fname + " " + this.lname + " ";
+        String dob = this.getDob().toString();
+        return name + dob;
+    }
+
 }

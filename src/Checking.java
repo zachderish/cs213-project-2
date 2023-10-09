@@ -38,7 +38,7 @@ public class Checking extends Account {
 
   @Override
   public String accountType(){
-    return "CHECKING";
+    return "Checking";
   }
 
 //will be revised
@@ -52,5 +52,10 @@ public class Checking extends Account {
     }
     return false;
   }
-  
+
+  @Override
+  public String toString() {
+    return this.accountType() + "::" + super.toString();
+  }
+
 }

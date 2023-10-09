@@ -10,7 +10,7 @@ public class CollegeChecking extends Checking {
      * @param balance integer for account.
      * @param campus Campus code.
      */
-    public CollegeChecking(Profile holder, int balance, Campus campus) {
+    public CollegeChecking(Profile holder, double balance, Campus campus) {
         super(holder, balance);
         this.campus = campus;
     }
@@ -35,7 +35,7 @@ public class CollegeChecking extends Checking {
 
     @Override
     public String accountType(){
-        return "COLLEGE_CHECKING";
+        return "College Checking";
     }
 
     //will be revised
@@ -48,5 +48,14 @@ public class CollegeChecking extends Checking {
             }
         }
         return false;
+    }
+
+    public Campus getCampus() {
+        return this.campus;
+    }
+
+    @Override
+    public String toString() {
+        return "College Checking::" + super.toString() + "::" + this.getCampus();
     }
 }

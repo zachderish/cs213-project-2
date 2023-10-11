@@ -19,6 +19,68 @@ public class TransactionManager {
         return false;
     }
 
+    private Campus makeCampus(String[] input){
+        int code = Integer.parseInt(input[6]);
+        if(code == 0){
+           return Campus.NEW_BRUNSWICK;
+        } if (code == 1){
+            return Campus.NEWARK;
+        }
+        return Campus.CAMDEN;
+    }
+    private Account makeCCAccount(String[] input){
+        Date newDOB= new Date(input[4]);
+        double newBalance = Double.parseDouble(input[5]);
+        Profile newProfile = new Profile(input[2], input[3], newDOB);
+        Campus theirCampus = makeCampus(input);
+        CollegeChecking newAccount = new CollegeChecking(newProfile, newBalance,theirCampus);
+        return newAccount;
+    }
+    private Account makeCheckingAccount(String[] input){
+        Date newDOB= new Date(input[4]);
+        double newBalance = Double.parseDouble(input[5]);
+        Profile newProfile = new Profile(input[2], input[3], newDOB);
+        Checking newAccount = new Checking(newProfile, newBalance);
+        return newAccount;
+    }
+
+    private Account makeSavingsAccount(String[] input){
+        Date newDOB= new Date(input[4]);
+        double newBalance = Double.parseDouble(input[5]);
+        Profile newProfile = new Profile(input[2], input[3], newDOB);
+        boolean loyalStatus = Integer.parseInt(input[6]) == 0 ? false : true;
+        Savings newAccount = new Savings(newProfile, newBalance,loyalStatus);
+        return newAccount;
+    }
+
+    //will finish this later
+    private Account makeMMAccount(String[] input){
+        Account somethingToReturn = new Account(null,null);
+        return somethingToReturn;
+    }
+
+
+    private Account makeAccount(String[] input){
+        String command = input[1];
+        if(command.equals("CC")){
+            return makeCCAccount(input);
+        }
+        if(command.equals("S")){
+            return makeSavingsAccount(input);
+        }
+        if(command.equals("C")){
+            return makeCheckingAccount(input);
+        }
+
+        return makeMMAccount(input);
+
+    }
+
+    private String runOpenAccount(String[] input, AccountDatabase database){
+        return "this methods not complete";
+    }
+
+
     /**
      * Given a command extracted from command line input, method will verify and run the specified command
      * @param calendar EventCalendar the calendar we will be adding an Event to
@@ -32,10 +94,10 @@ public class TransactionManager {
         if (command.equals("Q")) {
             return "QUIT";
         }
-        /*if (command.equals("A")) {
-            returnMessage = runAdd(calendar, input);
+        if (command.equals("A")) {
+            returnMessage = runOpenAccount(input, database);
         }
-        if (calendar.getNumEvents() == 0 ){
+      /*  if (calendar.getNumEvents() == 0 ){
             returnMessage = "Event calendar is empty!";
         }
         else {

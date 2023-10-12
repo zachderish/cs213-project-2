@@ -106,23 +106,37 @@ public class Date implements Comparable<Date> {
      *
      * @return true if date is within six months and not before current day, false otherwise
      */
-    public String within6Months() {
-        // create calendar object for the date to be scheduled
-        Calendar scheduleDate = Calendar.getInstance();
-        scheduleDate.set(this.year, this.month, this.day);
+    public boolean futureOrToday() {
+        // create calendar object for today
+        Calendar birthday = Calendar.getInstance();
+        birthday.set(this.year, this.month, this.day - 1);
 
-        // create Calendar object for the first day that cannot be scheduled
-        Calendar scheduleLimit = Calendar.getInstance();
-        scheduleLimit.add(Calendar.MONTH, SIX_MONTHS);
-        scheduleLimit.add(Calendar.DAY_OF_MONTH, ONE_DAY);
+        if (birthday.after(RIGHT_NOW)) {
+            return true;
+        }
+        return false;
+    }
 
-        if (!scheduleDate.before(scheduleLimit)) {
-            return "Event date must be within 6 months!";
+    public boolean underSixteen() {
+        Calendar birthday = Calendar.getInstance();
+        birthday.set(this.year, this.month, this.day);
+        birthday.add(Calendar.YEAR, 16);
+
+        if (birthday.after(RIGHT_NOW)) {
+            return true;
         }
-        if (!scheduleDate.after(RIGHT_NOW)) {
-            return "Event date must be a future date!";
+        return false;
+    }
+
+    public boolean overTwentyFour() {
+        Calendar birthday = Calendar.getInstance();
+        birthday.set(this.year, this.month, this.day);
+        birthday.add(Calendar.YEAR, 24);
+
+        if (birthday.after(RIGHT_NOW)) {
+            return true;
         }
-        return "VALID";
+        return false;
     }
 
     /**

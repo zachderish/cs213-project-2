@@ -30,6 +30,15 @@ public class AccountDatabase {
         return NOT_FOUND;
     }
 
+    public boolean containsProfile(Profile profile) {
+        for (int i = 0; i < this.numAcct; i++) {
+            if (this.accounts[i].getHolder().equals(profile)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private int findByElements(String fname, String lname, Date dob, String accountType){
         for(int i = 0; i < numAcct; i++){
             String firstName = accounts[i].getHolder().getFname();

@@ -70,9 +70,9 @@ public class Profile implements Comparable<Profile>{
 
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof Account){
-            Profile profile = (Profile)obj;
-            if(this.compareTo(profile) == 0) {
+        if(obj instanceof Profile){
+            Profile profile = (Profile) obj;
+            if (this.compareTo(profile) == 0) {
                 return true;
             }
         }
@@ -85,5 +85,13 @@ public class Profile implements Comparable<Profile>{
         String dob = this.getDob().toString();
         return name + dob;
     }
+
+    public static void main(String[] args) {
+        Date date = new Date("1/22/2002");
+        Profile profile1 = new Profile("Zach", "D", date);
+        Profile profile2 = new Profile("Zach", "D", date);
+        System.out.println(profile1.equals(profile2));
+    }
+
 
 }

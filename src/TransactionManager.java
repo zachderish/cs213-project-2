@@ -78,7 +78,7 @@ public class TransactionManager {
         }
     }
 
-    // need to handle equal Profile, future dob and invalid date exceptions
+    // need to handle future dob and invalid date exceptions
     private String handleOpenExceptions(String[] input, AccountDatabase database) {
         if (input.length < getInputLength(input)) {
             return "Missing data for opening an account.";
@@ -113,11 +113,26 @@ public class TransactionManager {
         }
 
         Account account = makeAccount(input);
-        boolean opened = database.open(account);
         String name = input[2] + " " + input[3];
         String dob = input[4];
         String accountType = input[1];
         String returnString = name + " " + dob + " " + "(" + accountType + ")";
+        if (!account.getHolder().getDob().isValid()) {
+            return "DOB invalid: " + dob  + " not a valid calendar date.";
+        }
+        if (account.getHolder().getDob().futureOrToday()) {
+            return "DOB invalid: " + dob  + " cannot be today or a future day.";
+        }
+        if (account.getHolder().getDob().underSixteen()) {
+            return "DOB invalid: " + dob  + " under 16.";
+        }
+        if (account.getHolder().getDob().overTwentyFour() && accountType.equals("CC")) {
+            return "DOB invalid: " + dob  + " over 24.";
+        }
+        if (database.containsProfile(account.getHolder())) {
+            return returnString + " is already in the database";
+        }
+        boolean opened = database.open(account);
         if (opened) {
             return returnString + " opened.";
         }
@@ -125,15 +140,7 @@ public class TransactionManager {
             return returnString + " is already in the database";
         }
     }
-    private Campus makeCampus(String[] input){
-        int code = Integer.parseInt(input[6]);
-        if(code == 0){
-           return Campus.NEW_BRUNSWICK;
-        } if (code == 1){
-            return Campus.NEWARK;
-        }
-        return Campus.CAMDEN;
-    }
+
 
     /**
      * Given a command extracted from command line input, method will verify and run the specified command

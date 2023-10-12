@@ -55,7 +55,7 @@ public class TransactionManager {
 
     //will finish this later
     private Account makeMMAccount(String[] input){
-        Account somethingToReturn = new Account(null,null);
+        CollegeChecking somethingToReturn = new CollegeChecking(null,0.0, null);
         return somethingToReturn;
     }
 
@@ -76,8 +76,14 @@ public class TransactionManager {
 
     }
 
+// will clean this up later and add some more checks for valid information
     private String runOpenAccount(String[] input, AccountDatabase database){
-        return "this methods not complete";
+        Account newAccount = makeAccount(input);
+        if(database.contains(newAccount)){
+            return input[2] + " " + input[3] + " " + input[4] + "(" + input[1] + ")"+" is already in the database.";
+        }
+        database.open(newAccount);
+        return input[2] + " " + input[3] + " " + input[4] + "(" + input[1] + ")"+" opened.";
     }
 
 
@@ -94,7 +100,7 @@ public class TransactionManager {
         if (command.equals("Q")) {
             return "QUIT";
         }
-        if (command.equals("A")) {
+        if (command.equals("O")) {
             returnMessage = runOpenAccount(input, database);
         }
       /*  if (calendar.getNumEvents() == 0 ){

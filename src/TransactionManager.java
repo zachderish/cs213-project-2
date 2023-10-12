@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.util.Scanner;
 
 public class TransactionManager {
@@ -126,6 +125,15 @@ public class TransactionManager {
             return returnString + " is already in the database";
         }
     }
+    private Campus makeCampus(String[] input){
+        int code = Integer.parseInt(input[6]);
+        if(code == 0){
+           return Campus.NEW_BRUNSWICK;
+        } if (code == 1){
+            return Campus.NEWARK;
+        }
+        return Campus.CAMDEN;
+    }
 
     /**
      * Given a command extracted from command line input, method will verify and run the specified command
@@ -143,10 +151,9 @@ public class TransactionManager {
         if (command.equals("O")) {
             return runOpen(input, database);
         }
-        if (database.getNumAcct() == 0 ){
+        if (database.getNumAcct() == 0) {
             returnMessage = "Account Database is empty!";
-        }
-        else {
+        } else {
             if (command.equals("P")) {
                 database.printSorted();
             }
@@ -161,14 +168,13 @@ public class TransactionManager {
             }
 
             if (command.equals("R")) {
-                returnMessage = removeEvent(calendar, input);
-            }*/
-        }
+                returnMessage = removeEvent(calendar, input);*/
+            }
         return returnMessage;
     }
 
 
-    public void run() {
+    public void run () {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Transaction Manager is running.\n");
@@ -185,19 +191,11 @@ public class TransactionManager {
                     return;
                 }
                 System.out.println(message);
-            }
-            else if (lineItemized[0].isEmpty()) {
+            } else if (lineItemized[0].isEmpty()) {
                 System.out.print("");
-            }
-            else {
+            } else {
                 System.out.println("Invalid command!");
             }
         }
     }
-
-    // testbed main to be DELETED later
-    public static void main(String[] args) {
-
-    }
-
 }

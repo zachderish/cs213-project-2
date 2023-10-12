@@ -3,8 +3,8 @@ public abstract class Account implements Comparable<Account> {
     protected double balance;
     public abstract double monthlyInterest();
     public abstract double monthlyFee();
-
     public abstract String accountType();
+
     /**
      * Account object constructor.
      * @param holder Profile object of account holder.
@@ -46,16 +46,16 @@ public abstract class Account implements Comparable<Account> {
      */
     @Override
     public int compareTo(Account account){
-        if (this.holder.compareTo(account.holder) > 0) {
-            return 1;
-        }
-        if (this.holder.compareTo(account.holder) < 0) {
-            return -1;
-        }
         if (this.accountType().compareTo(account.accountType()) > 0) {
             return 1;
         }
         if (this.accountType().compareTo(account.accountType()) < 0) {
+            return -1;
+        }
+        if (this.holder.compareTo(account.holder) > 0) {
+            return 1;
+        }
+        if (this.holder.compareTo(account.holder) < 0) {
             return -1;
         }
         else {
@@ -68,7 +68,7 @@ public abstract class Account implements Comparable<Account> {
     public boolean equals(Object obj){
         if(obj instanceof Account){
             Account account = (Account)obj;
-            if(compareTo(account) == 0) {
+            if(this.compareTo(account) == 0) {
                 return true;
             }
         }

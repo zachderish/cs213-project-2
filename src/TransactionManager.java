@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.Scanner;
 
 public class TransactionManager {
@@ -19,10 +20,117 @@ public class TransactionManager {
         return false;
     }
 
+    private Campus getCampus(int code) {
+        if (code == 0) {
+            return Campus.NEW_BRUNSWICK;
+        }
+        if (code == 1) {
+            return Campus.NEWARK;
+        }
+        else {
+            return Campus.CAMDEN;
+        }
+    }
+
+    private Account makeAccount(String[] input) {
+        // make profile
+        String fname = input[2];
+        String lname = input[3];
+        Date dob = new Date(input[4]);
+        Profile profile = new Profile(fname, lname, dob);
+        double initialDeposit = Double.parseDouble(input[5]);
+        String accountType = input[1];
+
+        if (accountType.equals("C")) {
+            Checking checking = new Checking(profile, initialDeposit);
+            return checking;
+        }
+        if (accountType.equals("CC")) {
+            int code = Integer.parseInt(input[6]);
+            Campus campus = getCampus(code);
+            CollegeChecking collegeChecking = new CollegeChecking(profile, initialDeposit, campus);
+            return collegeChecking;
+        }
+        if (accountType.equals("S")) {
+            int loyalCode = Integer.parseInt(input[6]);
+            boolean isLoyal = false;
+            if (loyalCode == 1) {
+                isLoyal = true;
+            }
+            Savings savings = new Savings(profile, initialDeposit, isLoyal);
+            return savings;
+        }
+        else {
+            int initialWithdrawal = 0;
+            MoneyMarket moneyMarket = new MoneyMarket(profile, initialDeposit, initialWithdrawal);
+            return moneyMarket;
+        }
+    }
+
+    private int getInputLength(String[] input) {
+        String accountType = input[1];
+        if (accountType.equals("C") || accountType.equals("MM")) {
+            int C_MM_LENGTH = 6;
+            return C_MM_LENGTH;
+        }
+        else {
+            int CC_S_LENGTH = 7;
+            return CC_S_LENGTH;
+        }
+    }
+
+    // need to handle equal Profile, future dob and invalid date exceptions
+    private String handleOpenExceptions(String[] input, AccountDatabase database) {
+        if (input.length < getInputLength(input)) {
+            return "Missing data for opening an account.";
+        }
+        try {
+            Double.parseDouble(input[5]);
+        }
+        catch (NumberFormatException ex) {
+            return "Not a valid amount";
+        }
+        int depositMin = 0;
+        if (Double.parseDouble(input[5]) <= depositMin) {
+            return "Initial deposit cannot be 0 or negative.";
+        }
+        int MMMin = 2000;
+        if (input[1].equals("MM") && Double.parseDouble(input[5]) < MMMin) {
+            return "Minimum of $2000 to open a Money Market account.";
+        }
+        if (input[1].equals("CC") && (Integer.parseInt(input[6]) < 0 || Integer.parseInt(input[6]) > 2)) {
+            return "Invalid campus code.";
+        }
+
+        else {
+            return "NO EX";
+        }
+    }
+
+    private String runOpen(String[] input, AccountDatabase database) {
+        String openException = handleOpenExceptions(input, database);
+        if (!openException.equals("NO EX")) {
+            return openException;
+        }
+
+        Account account = makeAccount(input);
+        boolean opened = database.open(account);
+        String name = input[2] + " " + input[3];
+        String dob = input[4];
+        String accountType = input[1];
+        String returnString = name + " " + dob + " " + "(" + accountType + ")";
+        if (opened) {
+            return returnString + " opened.";
+        }
+        else {
+            return returnString + " is already in the database";
+        }
+    }
+
     /**
      * Given a command extracted from command line input, method will verify and run the specified command
-     * @param calendar EventCalendar the calendar we will be adding an Event to
      * @param input an array of strings representing a single line from system.in
+     * @param database AccountDatabase to handle transactions from
      * @return will return string indicating error or which command was successfully executed
      */
     private String runCommand(String[] input, AccountDatabase database) {
@@ -32,17 +140,17 @@ public class TransactionManager {
         if (command.equals("Q")) {
             return "QUIT";
         }
-        /*if (command.equals("A")) {
-            returnMessage = runAdd(calendar, input);
+        if (command.equals("O")) {
+            return runOpen(input, database);
         }
-        if (calendar.getNumEvents() == 0 ){
-            returnMessage = "Event calendar is empty!";
+        if (database.getNumAcct() == 0 ){
+            returnMessage = "Account Database is empty!";
         }
         else {
             if (command.equals("P")) {
-                calendar.print();
+                database.printSorted();
             }
-            if (command.equals("PD")) {
+            /*if (command.equals("PD")) {
                 calendar.printByDepartment();
             }
             if (command.equals("PC")) {
@@ -54,8 +162,8 @@ public class TransactionManager {
 
             if (command.equals("R")) {
                 returnMessage = removeEvent(calendar, input);
-            }
-        }*/
+            }*/
+        }
         return returnMessage;
     }
 

@@ -151,6 +151,18 @@ public class Date implements Comparable<Date> {
         return 0;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Date){
+            Date date = (Date)obj;
+            if(this.compareTo(date) == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     /**
      * Getter method for Date object
      *

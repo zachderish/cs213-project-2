@@ -12,6 +12,10 @@ public class AccountDatabase {
         this.numAcct = initialSize;
     }
 
+    public int getNumAcct() {
+        return this.numAcct;
+    }
+
     /**
      * Search for an account in the array
      * @param account Account object
@@ -142,7 +146,7 @@ public class AccountDatabase {
                 return true;
             }
         }
-        return false;//if it dosent exist in the array or theres insufficient funds return false
+        return false;//if it doesn't exist in the array or there's insufficient funds return false
     } //false if insufficient fund
 
     /**
@@ -158,14 +162,31 @@ public class AccountDatabase {
     }
 
     // will need to add polymorphic toString methods
-    public void printSorted(){
+    public void printSorted(){ // insertion sort
+        System.out.println("* Event sorted by account type and profile.");
+        if (this.numAcct > 1) { // Insertion sort from: https://www.geeksforgeeks.org/insertion-sort/
+            for (int i = 1; i < this.numAcct; ++i) {
+
+                Account account = this.accounts[i];
+                int j = i - 1;
+
+                while (j >= 0 && this.accounts[j].compareTo(account) > 0) {
+                    this.accounts[j + 1] = this.accounts[j];
+                    j = j - 1;
+                }
+                this.accounts[j + 1] = account;
+            }
+        }
         for (int i = 0; i < this.numAcct; i++) {
             System.out.println(this.accounts[i].toString());
         }
+        System.out.println("* end of list.");
     }
+
     /*
     public void printFeesAndInterests(){} //calculate interests/fees
-    public void printUpdatedBalances(){} //apply the interests/fees*/
+    public void printUpdatedBalances(){} //apply the interests/fees
+    */
 
     // Testbed main, will be DELETED later
     public static void main(String[] args) {
@@ -205,6 +226,7 @@ public class AccountDatabase {
         Checking checkingAccount4 = new Checking(profile4, 5000);
         accounts1.deposit(checkingAccount4);
         System.out.println(checkingAccount2.getBalance());
+
     }
 
 }

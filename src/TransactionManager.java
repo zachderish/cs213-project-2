@@ -298,9 +298,13 @@ public class TransactionManager {
                 returnMessage = runDeposit(input, database);
             }
 
-            /*if (command.equals("R")) {
-                returnMessage = removeEvent(calendar, input);*/
+            if (command.equals("PI")) {
+                database.printFeesAndInterests();
             }
+            if (command.equals("UB")) {
+                database.printUpdatedBalances();
+            }
+        }
         return returnMessage;
     }
 

@@ -161,7 +161,12 @@ public class AccountDatabase {
             double currentBalance = accounts[index].getBalance(); //get the current balance of the real account
             int balanceLimit = 0;
             if(newBalance >= balanceLimit){ //compare amounts and make sure theres enough money to withdraw
+                newBalance = roundDouble(newBalance);
                 accounts[index].setBalance(newBalance); //set the balance of the real account
+                if (accounts[index].accountType().equals("Money Market")) {
+                    MoneyMarket moneyMarket = (MoneyMarket) accounts[index];
+                    moneyMarket.incrementWithdrawal();
+                }
                 return true;
             }
         }
@@ -176,8 +181,15 @@ public class AccountDatabase {
         double newBalance = account.getBalance();
         int index = find(account); //we extract the data we need to search if account exists
         if(index != NOT_FOUND) { //as long as it exists
+            newBalance = roundDouble(newBalance);
             accounts[index].setBalance(newBalance); //set the balance of the real account
         }
+    }
+
+    private double roundDouble(double amount) {
+        double scale = Math.pow(10, 2);
+        amount = Math.round(amount * scale) / scale;
+        return amount;
     }
 
     public void printSorted(){ // insertion sort
@@ -201,10 +213,48 @@ public class AccountDatabase {
         System.out.println("* end of list.");
     }
 
-    /*
-    public void printFeesAndInterests(){} //calculate interests/fees
-    public void printUpdatedBalances(){} //apply the interests/fees
-    */
+
+    public void printFeesAndInterests() {
+        System.out.println("* list of accounts with fee and monthly interest");
+        if (this.numAcct > 1) { // Insertion sort from: https://www.geeksforgeeks.org/insertion-sort/
+            for (int i = 1; i < this.numAcct; ++i) {
+
+                Account account = this.accounts[i];
+                int j = i - 1;
+
+                while (j >= 0 && this.accounts[j].compareTo(account) > 0) {
+                    this.accounts[j + 1] = this.accounts[j];
+                    j = j - 1;
+                }
+                this.accounts[j + 1] = account;
+            }
+        }
+
+        for (int i = 0; i < this.numAcct; i++) {
+            Account account = this.accounts[i];
+            String monthlyFee = "::fee $" + account.monthlyFee();
+
+            double monthlyInterest = (account.getBalance() * account.monthlyInterest() / 12);
+            monthlyInterest = roundDouble(monthlyInterest);
+            String interest = "::monthly interest $" + monthlyInterest;
+
+            System.out.println(account + monthlyFee + interest);
+        }
+        System.out.println("* end of list.");
+    }
+    public void printUpdatedBalances(){
+        System.out.println("* list of accounts with fees and interests applied.");
+        for (int i = 0; i < this.numAcct; i++) {
+            Account account = this.accounts[i];
+            double monthlyInterest = (account.getBalance() * account.monthlyInterest() / 12);
+            double balance = account.getBalance() + monthlyInterest - account.monthlyFee();
+            balance = roundDouble(balance);
+            account.setBalance(balance);
+            System.out.println(account);
+        }
+
+        System.out.println("* end of list.");
+    }
 
     // Testbed main, will be DELETED later
     public static void main(String[] args) {

@@ -16,6 +16,15 @@ public class MoneyMarket extends Savings {
         this.withdrawal = withdrawal;
 
     }
+
+    public int getWithdrawal() {
+        return this.withdrawal;
+    }
+
+    public void incrementWithdrawal () {
+        this.withdrawal++;
+    }
+
     /**
      * Get the INTEREST_RATE for a MoneyMarket account.
      * @return INTEREST_RATE constant if not a loyal customer, 0.0475 otherwise.

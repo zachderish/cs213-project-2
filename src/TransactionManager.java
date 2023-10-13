@@ -152,15 +152,15 @@ public class TransactionManager {
     }
 
     private String runWithdraw(String[] input, AccountDatabase database){
-        Account shellAccount = makeAccount(input);
+        if(!isNumber(input[5])){
+            return "Not a valid amount.";
+        }
+        Account shellAccount = makeClosingAccount(input);
         String name = input[2] + " " + input[3];
         String dob = input[4];
         String accountType = input[1];
         String returnString = name + " " + dob + " " + "(" + accountType + ")";
 
-        if(!isNumber(input[5])){
-            return "Not a valid amount.";
-        }
         double withdrawalAmount = Double.parseDouble(input[5]);
 
         if(!database.contains(shellAccount)){
@@ -173,8 +173,10 @@ public class TransactionManager {
         if(withdrawalAmount <= 0){
             return "Withdraw - amount cannot be 0 or negative.";
         }
-
-        return returnString + " " + "Withdraw - balance updated.";
+        double newBalance = currentBalance - withdrawalAmount;
+        shellAccount.setBalance(newBalance);
+        database.withdraw(shellAccount);
+        return returnString + " Withdraw - balance updated.";
     }
 
     private Account makeClosingAccount(String[] input) {

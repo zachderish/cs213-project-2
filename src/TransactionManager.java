@@ -175,9 +175,24 @@ public class TransactionManager {
         }
 
         return returnString + " " + "Withdraw - balance updated.";
+    }
 
-
-
+    private String runClose(String[] input, AccountDatabase database) {
+        if (input.length < getInputLength(input)) {
+            return "Missing data for closing an account.";
+        }
+        Account account = makeAccount(input);
+        Profile holder = account.getHolder();
+        String fname = holder.getFname();
+        String lname = holder.getLname();
+        String dob = holder.getDob().toString();
+        String accountType = account.accountType();
+        if(database.close(account)) {
+               return fname + " " + lname + " " + dob + "(" + accountType + ") has been closed.";
+        }
+        else {
+            return fname + " " + lname + " " + dob + "(" + accountType + ") is not in the database.";
+        }
     }
 
     /**
@@ -202,13 +217,13 @@ public class TransactionManager {
             if (command.equals("P")) {
                 database.printSorted();
             }
-            /*if (command.equals("PD")) {
-                calendar.printByDepartment();
+            if (command.equals("W")) {
+                returnMessage = runWithdraw(input, database);
             }
-            if (command.equals("PC")) {
-                calendar.printByCampus();
+            if (command.equals("C")) {
+                returnMessage = runClose(input, database);
             }
-            if (command.equals("PE")) {
+            /*if (command.equals("PE")) {
                 calendar.printByDate();
             }
 

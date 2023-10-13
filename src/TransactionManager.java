@@ -177,16 +177,55 @@ public class TransactionManager {
         return returnString + " " + "Withdraw - balance updated.";
     }
 
+    private Account makeClosingAccount(String[] input) {
+        // make profile
+        String fname = input[2];
+        String lname = input[3];
+        Date dob = new Date(input[4]);
+        Profile profile = new Profile(fname, lname, dob);
+        double initialDeposit = 0;
+        String accountType = input[1];
+
+        if (accountType.equals("C")) {
+            Checking checking = new Checking(profile, initialDeposit);
+            return checking;
+        }
+        if (accountType.equals("CC")) {
+            int code = 0;
+            Campus campus = getCampus(code);
+            CollegeChecking collegeChecking = new CollegeChecking(profile, initialDeposit, campus);
+            return collegeChecking;
+        }
+        if (accountType.equals("S")) {
+            int loyalCode = 0;
+            boolean isLoyal = false;
+            if (loyalCode == 1) {
+                isLoyal = true;
+            }
+            Savings savings = new Savings(profile, initialDeposit, isLoyal);
+            return savings;
+        }
+        else {
+            int initialWithdrawal = 0;
+            MoneyMarket moneyMarket = new MoneyMarket(profile, initialDeposit, initialWithdrawal);
+            return moneyMarket;
+        }
+    }
+
     private String runClose(String[] input, AccountDatabase database) {
-        if (input.length < getInputLength(input)) {
+        int closingLength = 5;
+        if (input.length < closingLength) {
             return "Missing data for closing an account.";
         }
-        Account account = makeAccount(input);
+        Account account = makeClosingAccount(input);
         Profile holder = account.getHolder();
         String fname = holder.getFname();
         String lname = holder.getLname();
         String dob = holder.getDob().toString();
-        String accountType = account.accountType();
+        String accountType = input[1];
+        if (holder.getDob().futureOrToday()) {
+            return "DOB invalid: " + dob + " cannot be today or a future day.";
+        }
         if(database.close(account)) {
                return fname + " " + lname + " " + dob + "(" + accountType + ") has been closed.";
         }
@@ -194,6 +233,36 @@ public class TransactionManager {
             return fname + " " + lname + " " + dob + "(" + accountType + ") is not in the database.";
         }
     }
+
+    private String runDeposit(String[] input, AccountDatabase database) {
+        if (!isNumber(input[5])) {
+            return "Not a valid amount.";
+        }
+        double depositAmount = Double.parseDouble(input[5]);
+        if (depositAmount <= 0) {
+            return "Deposit - amount cannot be 0 or negative.";
+        }
+        Account account = makeClosingAccount(input);
+
+        Profile holder = account.getHolder();
+        String fname = holder.getFname();
+        String lname = holder.getLname();
+        String dob = holder.getDob().toString();
+        String accountType = input[1];
+        String accountString = fname + " " + lname + " " + dob + "(" + accountType + ") ";
+
+        if (!database.contains(account)) {
+            return accountString + "is not in the database.";
+        }
+        double oldBalance = database.getAccountBalance(account);
+        double newBalance = oldBalance + depositAmount;
+        account.setBalance(newBalance);
+        database.deposit(account);
+
+
+        return accountString + "Deposit - balance updated.";
+    }
+
 
     /**
      * Given a command extracted from command line input, method will verify and run the specified command
@@ -223,11 +292,11 @@ public class TransactionManager {
             if (command.equals("C")) {
                 returnMessage = runClose(input, database);
             }
-            /*if (command.equals("PE")) {
-                calendar.printByDate();
+            if (command.equals("D")) {
+                returnMessage = runDeposit(input, database);
             }
 
-            if (command.equals("R")) {
+            /*if (command.equals("R")) {
                 returnMessage = removeEvent(calendar, input);*/
             }
         return returnMessage;

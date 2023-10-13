@@ -66,6 +66,7 @@ public class TransactionManager {
         }
     }
 
+
     private int getInputLength(String[] input) {
         String accountType = input[1];
         if (accountType.equals("C") || accountType.equals("MM")) {
@@ -141,6 +142,43 @@ public class TransactionManager {
         }
     }
 
+    private boolean isNumber(String number){
+        try {
+            double test = Double.parseDouble(number);
+        } catch(NumberFormatException nfe){
+            return false;
+        }
+        return true;
+    }
+
+    private String runWithdraw(String[] input, AccountDatabase database){
+        Account shellAccount = makeAccount(input);
+        String name = input[2] + " " + input[3];
+        String dob = input[4];
+        String accountType = input[1];
+        String returnString = name + " " + dob + " " + "(" + accountType + ")";
+
+        if(!isNumber(input[5])){
+            return "Not a valid amount.";
+        }
+        double withdrawalAmount = Double.parseDouble(input[5]);
+
+        if(!database.contains(shellAccount)){
+            return returnString + " " + "is not in the database.";
+        }
+        double currentBalance = database.getAccountBalance(shellAccount);
+        if(withdrawalAmount > currentBalance){
+            return returnString + " " + "Withdraw - insufficient fund.";
+        }
+        if(withdrawalAmount <= 0){
+            return "Withdraw - amount cannot be 0 or negative.";
+        }
+
+        return returnString + " " + "Withdraw - balance updated.";
+
+
+
+    }
 
     /**
      * Given a command extracted from command line input, method will verify and run the specified command

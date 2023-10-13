@@ -132,7 +132,14 @@ public class AccountDatabase {
         return false;
     }
 
+public double getAccountBalance(Account account){
+        int index = find(account);
+        if(index != NOT_FOUND){
+            return accounts[index].getBalance();
+        }
 
+        return -1.0;
+}
 
     /**
      * Method to withdraw money from specified account.

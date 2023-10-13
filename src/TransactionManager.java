@@ -119,7 +119,7 @@ public class TransactionManager {
         String accountType = input[1];
         String returnString = name + " " + dob + " " + "(" + accountType + ")";
         if (!account.getHolder().getDob().isValid()) {
-            return "DOB invalid: " + dob  + " not a valid calendar date.";
+            return "DOB invalid: " + dob  + " not a valid calendar date!";
         }
         if (account.getHolder().getDob().futureOrToday()) {
             return "DOB invalid: " + dob  + " cannot be today or a future day.";
@@ -130,15 +130,15 @@ public class TransactionManager {
         if (account.getHolder().getDob().overTwentyFour() && accountType.equals("CC")) {
             return "DOB invalid: " + dob  + " over 24.";
         }
-        if (database.containsProfile(account.getHolder())) {
-            return returnString + " is already in the database";
+        if (database.containsProfile(account)) {
+            return returnString + " is already in the database.";
         }
         boolean opened = database.open(account);
         if (opened) {
             return returnString + " opened.";
         }
         else {
-            return returnString + " is already in the database";
+            return returnString + " is already in the database.";
         }
     }
 

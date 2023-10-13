@@ -63,9 +63,9 @@ public class Savings extends Account {
     @Override
     public String toString() {
         String account = super.toString();
+        account = "Savings::" + account;
         if (this.isLoyal) {
             account += "::is loyal";
-            account = "Savings::" + account;
         }
         return account;
     }

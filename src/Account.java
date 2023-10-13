@@ -91,7 +91,7 @@ public abstract class Account implements Comparable<Account> {
     @Override
     public String toString() {
         String profileInfo = this.holder.toString() + "::";
-        String balance = "::Balance $" + this.getBalance();
+        String balance = "Balance $" + this.getBalance();
         return profileInfo + balance;
     }
 

@@ -30,9 +30,12 @@ public class AccountDatabase {
         return NOT_FOUND;
     }
 
-    public boolean containsProfile(Profile profile) {
+    public boolean containsProfile(Account account) {
         for (int i = 0; i < this.numAcct; i++) {
-            if (this.accounts[i].getHolder().equals(profile)) {
+            String account1Type = this.accounts[i].accountType();
+            String account2Type = account.accountType();
+            boolean secondClause = (account1Type.equals("College Checking") && account2Type.equals("Checking")) || (account1Type.equals("Checking") && account2Type.equals("College Checking"));
+            if (this.accounts[i].getHolder().equals(account.getHolder()) && secondClause) {
                 return true;
             }
         }
@@ -177,7 +180,6 @@ public double getAccountBalance(Account account){
         }
     }
 
-    // will need to add polymorphic toString methods
     public void printSorted(){ // insertion sort
         System.out.println("* Event sorted by account type and profile.");
         if (this.numAcct > 1) { // Insertion sort from: https://www.geeksforgeeks.org/insertion-sort/

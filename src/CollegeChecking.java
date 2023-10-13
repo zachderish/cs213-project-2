@@ -56,6 +56,8 @@ public class CollegeChecking extends Checking {
 
     @Override
     public String toString() {
-        return "College Checking::" + super.toString() + "::" + this.getCampus();
+        String superToString = super.toString();
+        superToString = superToString.replace("Checking::", "");
+        return "College Checking::" + superToString + "::" + this.getCampus();
     }
 }

@@ -133,7 +133,7 @@ public class Date implements Comparable<Date> {
         birthday.set(this.year, this.month, this.day);
         birthday.add(Calendar.YEAR, 24);
 
-        if (birthday.after(RIGHT_NOW)) {
+        if (birthday.before(RIGHT_NOW)) {
             return true;
         }
         return false;

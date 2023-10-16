@@ -1,3 +1,8 @@
+/**
+ * Array-Based implementation to hold list of accounts
+ * @author Kenrick Eagar, Zachary Derish
+ */
+
 public class AccountDatabase {
     private Account [] accounts; //list of various types of accounts
     private int numAcct; //number of accounts in the array
@@ -12,6 +17,10 @@ public class AccountDatabase {
         this.numAcct = initialSize;
     }
 
+    /**
+     * returns the number of accounts in database
+     * @return integer, the number of accounts in database
+     */
     public int getNumAcct() {
         return this.numAcct;
     }
@@ -30,6 +39,11 @@ public class AccountDatabase {
         return NOT_FOUND;
     }
 
+    /**
+     * Will check to see if account database contains an account based off profile
+     * @param account the account we want to check if in database
+     * @return boolean indicating true if profile is in database, false otherwise
+     */
     public boolean containsProfile(Account account) {
         for (int i = 0; i < this.numAcct; i++) {
             String account1Type = this.accounts[i].accountType();
@@ -42,6 +56,14 @@ public class AccountDatabase {
         return false;
     }
 
+    /**
+     * Given a select amount of elements of an object, method will attempt to find the account
+     * @param fname the first name of account holder
+     * @param lname the last name of account holder
+     * @param dob the date of birth of account holder
+     * @param accountType the accountype we are attempting to locate
+     * @return the index of the element if it is in the database
+     */
     private int findByElements(String fname, String lname, Date dob, String accountType){
         for(int i = 0; i < numAcct; i++){
             String firstName = accounts[i].getHolder().getFname();
@@ -135,6 +157,11 @@ public class AccountDatabase {
         return false;
     }
 
+    /**
+     *Given an account, get the account balance
+     * @param account the account we want to get balance of
+     * @return double representing balance of account
+     */
     public double getAccountBalance(Account account){
         int index = find(account);
         if(index != NOT_FOUND){
@@ -186,12 +213,20 @@ public class AccountDatabase {
         }
     }
 
+    /**
+     * Method to round account balance
+     * @param double the balance we will be rounding
+     * @return the rounded double of input number
+     */
     private double roundDouble(double amount) {
         double scale = Math.pow(10, 2);
         amount = Math.round(amount * scale) / scale;
         return amount;
     }
 
+    /**
+     * Print the sorted Accounts
+     */
     public void printSorted(){ // insertion sort
         System.out.println("* Event sorted by account type and profile.");
         if (this.numAcct > 1) { // Insertion sort from: https://www.geeksforgeeks.org/insertion-sort/
@@ -213,7 +248,9 @@ public class AccountDatabase {
         System.out.println("* end of list.");
     }
 
-
+    /**
+     * Prints the accounts in order with respect to fees and interests
+     */
     public void printFeesAndInterests() {
         System.out.println("* list of accounts with fee and monthly interest");
         if (this.numAcct > 1) { // Insertion sort from: https://www.geeksforgeeks.org/insertion-sort/
@@ -242,6 +279,10 @@ public class AccountDatabase {
         }
         System.out.println("* end of list.");
     }
+
+    /**
+     * Prints the accounts in order with respect to any updates that have occurred
+     */
     public void printUpdatedBalances(){
         System.out.println("* list of accounts with fees and interests applied.");
         for (int i = 0; i < this.numAcct; i++) {

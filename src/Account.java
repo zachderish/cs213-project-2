@@ -1,3 +1,8 @@
+/**
+ * Define abstract Account class
+ * @author Kenrick Eagar, Zachary Derish
+ */
+
 public abstract class Account implements Comparable<Account> {
     protected Profile holder;
     protected double balance;
@@ -63,7 +68,11 @@ public abstract class Account implements Comparable<Account> {
         }
     }
 
-    //will be revised
+    /**
+     * Generic equals method to compare Accounts and see if they are equivalent or not
+     * @param Account object we will be comparing
+     * @return Boolean true if Accounts are equal, false otherwise
+     */
     @Override
     public boolean equals(Object obj){
         if(obj instanceof Account){
@@ -88,6 +97,10 @@ public abstract class Account implements Comparable<Account> {
         System.out.println(a1.compareTo(a2));
     }
 
+    /**
+     * Prints the accounts profile information and balance
+     * @return String stating Account objects profile and balance information
+     */
     @Override
     public String toString() {
         String profileInfo = this.holder.toString() + "::";

@@ -1,3 +1,8 @@
+/**
+ * Extend the savings class and define MoneyMarket subclass
+ * @author Kenrick Eagar, Zachary Derish
+ */
+
 public class MoneyMarket extends Savings {
 
     private static final double INTEREST_RATE = 0.045;
@@ -17,10 +22,17 @@ public class MoneyMarket extends Savings {
 
     }
 
+    /**
+     * Getter method to obtain number of withdrawals
+     * @return the number of withdrawals account has
+     */
     public int getWithdrawal() {
         return this.withdrawal;
     }
 
+    /**
+     * Increases the withdrawal of account by 1
+     */
     public void incrementWithdrawal () {
         this.withdrawal++;
     }
@@ -65,12 +77,19 @@ public class MoneyMarket extends Savings {
 
     }
 
+    /**
+     * @return String representing accountType of object
+     */
     @Override
     public String accountType(){
         return "Money Market";
     }
 
-    //will be revised
+    /**
+     * Given an account will check to see if object type and information is equal
+     * @param Account object we want to compare to
+     * @return boolean indicating true of Accounts are equal, false otherwise
+     */
     @Override
     public boolean equals(Object obj){
         if(obj instanceof MoneyMarket){
@@ -81,7 +100,10 @@ public class MoneyMarket extends Savings {
         }
         return false;
     }
-
+    /**
+     * String representation of profile information, account type, and number of withdrawals
+     * @return String representation of profile information, account type, and number of withdrawals
+     */
     @Override
     public String toString() {
         String savingsInfo = super.toString();

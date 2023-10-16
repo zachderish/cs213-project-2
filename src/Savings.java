@@ -1,3 +1,9 @@
+
+/**
+ * Extend the account class and define savings subclass
+ * @author Kenrick Eagar, Zachary Derish
+ */
+
 public class Savings extends Account {
 
     private static final double INTEREST_RATE = 0.04;
@@ -29,6 +35,10 @@ public class Savings extends Account {
         return INTEREST_RATE;
     }
 
+    /**
+     * Returns string representation of the account type
+     * @return string indicating the type of account
+     */
     @Override
     public String accountType(){
         return "Savings";
@@ -60,6 +70,10 @@ public class Savings extends Account {
         return false;
     }
 
+    /**
+     * Method displays general account information and the account type and loyal status
+     * @return String displaying account type and loyal status
+     */
     @Override
     public String toString() {
         String account = super.toString();

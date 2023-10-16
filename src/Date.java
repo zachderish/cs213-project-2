@@ -1,5 +1,4 @@
 import java.util.Calendar;
-//REUSED CODE FROM DATE CLASS WILL MAKE CHANGES LATER TO FIT
 
 /**
  * Define the abstract data type Date and its methods
@@ -41,6 +40,10 @@ public class Date implements Comparable<Date> {
         this.day = day;
     }
 
+    /**
+     * Constructs date object given string representation of date
+     * @param String representation of date
+     */
     public Date(String date){
         String[] temp = date.split("/");
         this.month = Integer.parseInt(temp[0])-1;
@@ -117,6 +120,10 @@ public class Date implements Comparable<Date> {
         return false;
     }
 
+    /**
+     * Checks to see if date of birth if under 16 years of age
+     * @return boolean indicating true if date of birth is under 16 years of age false otherwise
+     */
     public boolean underSixteen() {
         Calendar birthday = Calendar.getInstance();
         birthday.set(this.year, this.month, this.day);
@@ -128,6 +135,10 @@ public class Date implements Comparable<Date> {
         return false;
     }
 
+    /**
+     * Checks to see if date of birth if over 24 years of age
+     * @return boolean indicating true if date of birth is over 24 years of age false otherwise
+     */
     public boolean overTwentyFour() {
         Calendar birthday = Calendar.getInstance();
         birthday.set(this.year, this.month, this.day);
@@ -141,7 +152,6 @@ public class Date implements Comparable<Date> {
 
     /**
      * compare two date objects based on year, month and day
-     *
      * @param date the second Date object in the comparison
      * @return 1 if date1 > date2, -1 if date1 < date2, and 0 otherwise
      */
@@ -165,6 +175,11 @@ public class Date implements Comparable<Date> {
         return 0;
     }
 
+    /**
+     * Checks if two date objects are equal
+     * @param Date object we are looking to compare
+     * @return boolean indicating if dates are equal, false otherwise
+     */
     @Override
     public boolean equals(Object obj) {
         if(obj instanceof Date){
@@ -178,8 +193,7 @@ public class Date implements Comparable<Date> {
 
 
     /**
-     * Getter method for Date object
-     *
+     * String representation of date object
      * @return String format of this Date object
      */
     @Override

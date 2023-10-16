@@ -1,3 +1,8 @@
+/**
+ * Extend the checking class and define collegeChecking subclass
+ * @author Kenrick Eagar, Zachary Derish
+ */
+
 public class CollegeChecking extends Checking {
 
     private static final double MONTHLY_FEE = 0.00;
@@ -33,12 +38,20 @@ public class CollegeChecking extends Checking {
         return MONTHLY_FEE;
     }
 
+    /**
+     * String representation of Account Type
+     * @return String representing the account type
+     */
     @Override
     public String accountType(){
         return "College Checking";
     }
 
-    //will be revised
+    /**
+     * Given an account will check to see if object type and information is equal
+     * @param Account object we want to compare to
+     * @return boolean indicating true of Accounts are equal, false otherwise
+     */
     @Override
     public boolean equals(Object obj){
         if(obj instanceof CollegeChecking){
@@ -50,10 +63,18 @@ public class CollegeChecking extends Checking {
         return false;
     }
 
+    /**
+     * Returns the campus of collegeChecking account
+     * @return returns the campus of collegeChecking account
+     */
     public Campus getCampus() {
         return this.campus;
     }
 
+    /**
+     * String representation of profile information, account type, and campus
+     * @return String representation of profile information, account type, and number of withdrawals
+     */
     @Override
     public String toString() {
         String superToString = super.toString();

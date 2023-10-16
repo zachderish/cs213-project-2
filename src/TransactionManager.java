@@ -1,5 +1,10 @@
 import java.util.Scanner;
 
+
+/**
+ * Interface used to process command lines in RunProject2
+ * @author Kenrick Eagar, Zachary Derish
+ */
 public class TransactionManager {
 
     final String[] COMMANDS = {"O", "C", "D", "W", "P", "PI", "UB", "Q"}; //list of commands
@@ -19,6 +24,11 @@ public class TransactionManager {
         return false;
     }
 
+    /**
+     * Given a campus code, will return the corresponding campus
+     * @param integer representing the campus code
+     * @return Campus enum object
+     */
     private Campus getCampus(int code) {
         if (code == 0) {
             return Campus.NEW_BRUNSWICK;
@@ -31,6 +41,11 @@ public class TransactionManager {
         }
     }
 
+    /**
+     * Creates Account object based off commands given in system.in
+     * @param String array representing a single command line from system.in
+     * @return returns constructed Account object
+     */
     private Account makeAccount(String[] input) {
         // make profile
         String fname = input[2];
@@ -66,7 +81,11 @@ public class TransactionManager {
         }
     }
 
-
+    /**
+     * Tells the input length of a single command line from system.in
+     * @param String array representing a single command line from system.in
+     * @return int the amount of commands/info in a single command line
+     */
     private int getInputLength(String[] input) {
         String accountType = input[1];
         if (accountType.equals("C") || accountType.equals("MM")) {
@@ -80,6 +99,13 @@ public class TransactionManager {
     }
 
     // need to handle future dob and invalid date exceptions
+
+    /**
+     * Method to try and catch possible exceptions encountered from standard input
+     * @param String array representing a single command line from system.in
+     * @param database object, the datebase that will store all Accounts
+     * @return String indicating the potential errors
+     */
     private String handleOpenExceptions(String[] input, AccountDatabase database) {
         if (input.length < getInputLength(input)) {
             return "Missing data for opening an account.";
@@ -107,6 +133,12 @@ public class TransactionManager {
         }
     }
 
+    /**
+     * Method runs the open account command
+     * @param String array representing a single command line from system.in
+     * @param database object, the datebase that will store all Accounts
+     * @return String indicating if command was successfully executed.
+     */
     private String runOpen(String[] input, AccountDatabase database) {
         String openException = handleOpenExceptions(input, database);
         if (!openException.equals("NO EX")) {
@@ -141,7 +173,11 @@ public class TransactionManager {
             return returnString + " is already in the database.";
         }
     }
-
+    /**
+     * Indicates if a given String is a number or not
+     * @param String number, the number we are testing
+     * @return true if it is a number, false otherwise
+     */
     private boolean isNumber(String number){
         try {
             double test = Double.parseDouble(number);
@@ -150,7 +186,12 @@ public class TransactionManager {
         }
         return true;
     }
-
+    /**
+     * Method runs the withdraw command
+     * @param String array representing a single command line from system.in
+     * @param database object, the datebase that will store all Accounts
+     * @return String indicating if command was successfully executed.
+     */
     private String runWithdraw(String[] input, AccountDatabase database){
         if(!isNumber(input[5])){
             return "Not a valid amount.";
@@ -178,7 +219,11 @@ public class TransactionManager {
         database.withdraw(shellAccount);
         return returnString + " Withdraw - balance updated.";
     }
-
+    /**
+     * Creates account object with less given information
+     * @param String array representing a single command line from system.in
+     * @return Account object constructed based off input
+     */
     private Account makeClosingAccount(String[] input) {
         // make profile
         String fname = input[2];
@@ -213,7 +258,12 @@ public class TransactionManager {
             return moneyMarket;
         }
     }
-
+    /**
+     * Method runs the close command
+     * @param String array representing a single command line from system.in
+     * @param database object, the datebase that will store all Accounts
+     * @return String indicating if command was successfully executed.
+     */
     private String runClose(String[] input, AccountDatabase database) {
         int closingLength = 5;
         if (input.length < closingLength) {
@@ -235,7 +285,12 @@ public class TransactionManager {
             return fname + " " + lname + " " + dob + "(" + accountType + ") is not in the database.";
         }
     }
-
+    /**
+     * Method runs the deposit command
+     * @param String array representing a single command line from system.in
+     * @param database object, the datebase that will store all Accounts
+     * @return String indicating if command was successfully executed.
+     */
     private String runDeposit(String[] input, AccountDatabase database) {
         if (!isNumber(input[5])) {
             return "Not a valid amount.";
@@ -308,7 +363,9 @@ public class TransactionManager {
         return returnMessage;
     }
 
-
+    /**
+     *Void method to process lines from standard input
+     */
     public void run () {
         Scanner scanner = new Scanner(System.in);
 

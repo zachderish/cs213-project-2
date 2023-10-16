@@ -1,3 +1,8 @@
+/**
+ * Define profile object/class
+ * @author Kenrick Eagar, Zachary Derish
+ */
+
 public class Profile implements Comparable<Profile>{
     private String fname;
     private String lname;
@@ -68,6 +73,11 @@ public class Profile implements Comparable<Profile>{
         }
     }
 
+    /**
+     * Compares two profiles to see if they are equal or not
+     * @param The profile object we want to compare to
+     * @return returns true if profiles are equivalent, false otherwise
+     */
     @Override
     public boolean equals(Object obj) {
         if(obj instanceof Profile){
@@ -79,6 +89,10 @@ public class Profile implements Comparable<Profile>{
         return false;
     }
 
+    /**
+     * String showing first name, last name, and date of birth of profile
+     * @return String representation of profile
+     */
     @Override
     public String toString() {
         String name = this.fname + " " + this.lname + " ";

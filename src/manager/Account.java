@@ -1,5 +1,7 @@
 package manager;
 
+import java.text.DecimalFormat;
+
 /**
  * Define abstract manager.Account class
  * @author Kenrick Eagar, Zachary Derish
@@ -106,8 +108,10 @@ public abstract class Account implements Comparable<Account> {
     @Override
     public String toString() {
         String profileInfo = this.holder.toString() + "::";
-        String balance = "Balance $" + this.getBalance();
-        return profileInfo + balance;
+        double balance = this.getBalance();
+        String formatBalance = new DecimalFormat("#,##0.00").format(balance);
+        String stringBalance = "Balance $" + formatBalance;
+        return profileInfo + stringBalance;
     }
 
 }

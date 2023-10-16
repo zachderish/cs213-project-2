@@ -342,7 +342,7 @@ public class TransactionManager {
             return runOpen(input, database);
         }
         if (database.getNumAcct() == 0) {
-            returnMessage = "manager.Account Database is empty!";
+            returnMessage = "Account Database is empty!";
         } else {
             if (command.equals("P")) {
                 database.printSorted();

@@ -1,5 +1,7 @@
 package manager;
 
+import java.text.DecimalFormat;
+
 /**
  * Array-Based implementation to hold list of accounts
  * @author Kenrick Eagar, Zachary Derish
@@ -50,7 +52,7 @@ public class AccountDatabase {
         for (int i = 0; i < this.numAcct; i++) {
             String account1Type = this.accounts[i].accountType();
             String account2Type = account.accountType();
-            boolean secondClause = (account1Type.equals("College manager.Checking") && account2Type.equals("manager.Checking")) || (account1Type.equals("manager.Checking") && account2Type.equals("College manager.Checking"));
+            boolean secondClause = (account1Type.equals("College Checking") && account2Type.equals("Checking")) || (account1Type.equals("Checking") && account2Type.equals("College Checking"));
             if (this.accounts[i].getHolder().equals(account.getHolder()) && secondClause) {
                 return true;
             }
@@ -230,7 +232,7 @@ public class AccountDatabase {
      * Print the sorted Accounts
      */
     public void printSorted(){ // insertion sort
-        System.out.println("* Event sorted by account type and profile.");
+        System.out.println("\n* Accounts sorted by account type and profile.");
         if (this.numAcct > 1) { // Insertion sort from: https://www.geeksforgeeks.org/insertion-sort/
             for (int i = 1; i < this.numAcct; ++i) {
 
@@ -254,7 +256,7 @@ public class AccountDatabase {
      * Prints the accounts in order with respect to fees and interests
      */
     public void printFeesAndInterests() {
-        System.out.println("* list of accounts with fee and monthly interest");
+        System.out.println("\n* list of accounts with fee and monthly interest");
         if (this.numAcct > 1) { // Insertion sort from: https://www.geeksforgeeks.org/insertion-sort/
             for (int i = 1; i < this.numAcct; ++i) {
 
@@ -271,11 +273,13 @@ public class AccountDatabase {
 
         for (int i = 0; i < this.numAcct; i++) {
             Account account = this.accounts[i];
-            String monthlyFee = "::fee $" + account.monthlyFee();
+            String formatFee = new DecimalFormat("#0.00").format(account.monthlyFee());
+            String monthlyFee = "::fee $" + formatFee;
 
             double monthlyInterest = (account.getBalance() * account.monthlyInterest() / 12);
             monthlyInterest = roundDouble(monthlyInterest);
-            String interest = "::monthly interest $" + monthlyInterest;
+            String formatInterest = new DecimalFormat("#0.00").format(monthlyInterest);
+            String interest = "::monthly interest $" + formatInterest;
 
             System.out.println(account + monthlyFee + interest);
         }

@@ -46,7 +46,7 @@ public class CollegeChecking extends Checking {
      */
     @Override
     public String accountType(){
-        return "College manager.Checking";
+        return "College Checking";
     }
 
     /**
@@ -80,7 +80,7 @@ public class CollegeChecking extends Checking {
     @Override
     public String toString() {
         String superToString = super.toString();
-        superToString = superToString.replace("manager.Checking::", "");
-        return "College manager.Checking::" + superToString + "::" + this.getCampus();
+        superToString = superToString.replace("Checking::", "");
+        return "College Checking::" + superToString + "::" + this.getCampus();
     }
 }

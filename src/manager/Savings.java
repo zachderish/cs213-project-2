@@ -42,7 +42,7 @@ public class Savings extends Account {
      */
     @Override
     public String accountType(){
-        return "manager.Savings";
+        return "Savings";
     }
 
     /**
@@ -78,7 +78,7 @@ public class Savings extends Account {
     @Override
     public String toString() {
         String account = super.toString();
-        account = "manager.Savings::" + account;
+        account = "Savings::" + account;
         if (this.isLoyal) {
             account += "::is loyal";
         }

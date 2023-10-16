@@ -47,7 +47,7 @@ public class Checking extends Account {
    */
   @Override
   public String accountType(){
-    return "manager.Checking";
+    return "Checking";
   }
 
   /**
@@ -72,7 +72,7 @@ public class Checking extends Account {
    */
   @Override
   public String toString() {
-    return "manager.Checking::" + super.toString();
+    return "Checking::" + super.toString();
   }
 
 }

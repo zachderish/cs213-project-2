@@ -21,6 +21,18 @@ public class Profile implements Comparable<Profile>{
     }
 
     /**
+     * Profile Constructor with String representation of Date
+     * @param fname String representation of profile first name
+     * @param lname String representation of profile last name
+     * @param dob string representation of date of birth
+     */
+    public Profile(String fname, String lname, String dob){
+        this.fname = fname;
+        this.lname = lname;
+        this.dob = new Date(dob);
+    }
+
+    /**
      *Getter method to retrieve first name of a profile
      * @return String representation of first name
      */

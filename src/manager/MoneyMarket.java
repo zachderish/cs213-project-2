@@ -46,9 +46,11 @@ public class MoneyMarket extends Savings {
     @Override
     public double monthlyInterest(){
         double loyalRate = 0.0475;
-        if (isLoyal) {
+        if (balance >= 2000) {
+            this.isLoyal = true;
             return loyalRate;
         }
+        this.isLoyal = false;
         return INTEREST_RATE;
     }
 

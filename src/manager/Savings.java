@@ -30,7 +30,7 @@ public class Savings extends Account {
     @Override
     public double monthlyInterest(){
         double loyalRate = 0.0425;
-        if (isLoyal) {
+        if (this.isLoyal) {
             return loyalRate;
         }
         return INTEREST_RATE;

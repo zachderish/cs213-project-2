@@ -294,7 +294,7 @@ public class AccountDatabase {
             Account account = this.accounts[i];
             double monthlyInterest = (account.getBalance() * account.monthlyInterest() / 12);
             double balance = account.getBalance() + monthlyInterest - account.monthlyFee();
-            balance = roundDouble(balance);
+            //balance = roundDouble(balance);
             account.setBalance(balance);
             System.out.println(account);
         }

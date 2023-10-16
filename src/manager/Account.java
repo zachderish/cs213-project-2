@@ -1,5 +1,7 @@
+package manager;
+
 /**
- * Define abstract Account class
+ * Define abstract manager.Account class
  * @author Kenrick Eagar, Zachary Derish
  */
 
@@ -11,8 +13,8 @@ public abstract class Account implements Comparable<Account> {
     public abstract String accountType();
 
     /**
-     * Account object constructor.
-     * @param holder Profile object of account holder.
+     * manager.Account object constructor.
+     * @param holder manager.Profile object of account holder.
      * @param balance integer for account.
      */
     public Account(Profile holder, double balance){
@@ -45,7 +47,7 @@ public abstract class Account implements Comparable<Account> {
     }
 
     /**
-     * compareTo method for Account objects by account type and holder information.
+     * compareTo method for manager.Account objects by account type and holder information.
      * @param account the object to be compared.
      * @return 1 if this.account greater than account, -1 if this.account less than account, and 0 otherwise.
      */
@@ -99,7 +101,7 @@ public abstract class Account implements Comparable<Account> {
 
     /**
      * Prints the accounts profile information and balance
-     * @return String stating Account objects profile and balance information
+     * @return String stating manager.Account objects profile and balance information
      */
     @Override
     public String toString() {

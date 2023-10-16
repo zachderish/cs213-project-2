@@ -1,6 +1,7 @@
+package manager;
 
 /**
- * Extend the account class and define Checking subclass
+ * Extend the account class and define manager.Checking subclass
  * @author Kenrick Eagar, Zachary Derish
  */
 public class Checking extends Account {
@@ -10,8 +11,8 @@ public class Checking extends Account {
 
 
   /**
-   * Constructor for Checking object.
-   * @param holder Profile object of account holder.
+   * Constructor for manager.Checking object.
+   * @param holder manager.Profile object of account holder.
    * @param balance integer for account.
    */
   public Checking(Profile holder, double balance) {
@@ -19,7 +20,7 @@ public class Checking extends Account {
   }
 
   /**
-   * Get the INTEREST_RATE for a Checking account.
+   * Get the INTEREST_RATE for a manager.Checking account.
    * @return INTEREST_RATE constant.
    */
   @Override
@@ -28,7 +29,7 @@ public class Checking extends Account {
   }
 
   /**
-   * Get the MONTHLY_FEE for a Checking account.
+   * Get the MONTHLY_FEE for a manager.Checking account.
    * @return MONTHLY_FEE constant if not a loyal customer, 0.0 otherwise.
    */
   @Override
@@ -41,12 +42,12 @@ public class Checking extends Account {
     return MONTHLY_FEE;
   }
   /**
-   * String representation of Account Type
+   * String representation of manager.Account Type
    * @return String representing the account type
    */
   @Override
   public String accountType(){
-    return "Checking";
+    return "manager.Checking";
   }
 
   /**
@@ -71,7 +72,7 @@ public class Checking extends Account {
    */
   @Override
   public String toString() {
-    return "Checking::" + super.toString();
+    return "manager.Checking::" + super.toString();
   }
 
 }

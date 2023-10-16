@@ -1,7 +1,9 @@
+package manager;
+
 import java.util.Calendar;
 
 /**
- * Define the abstract data type Date and its methods
+ * Define the abstract data type manager.Date and its methods
  * @author Kenrick Eagar, Zachary Derish
  */
 public class Date implements Comparable<Date> {
@@ -28,11 +30,11 @@ public class Date implements Comparable<Date> {
     private final int ONE_DAY = 1;
 
     /**
-     * Date constructor
+     * manager.Date constructor
      *
-     * @param year  the year associated with the Date
-     * @param month the month associated with the Date
-     * @param day   the day associated with the Date
+     * @param year  the year associated with the manager.Date
+     * @param month the month associated with the manager.Date
+     * @param day   the day associated with the manager.Date
      */
     public Date(int year, int month, int day) {
         this.year = year;
@@ -87,7 +89,7 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * Check the Date object to ensure year month and day are all valid inputs
+     * Check the manager.Date object to ensure year month and day are all valid inputs
      *
      * @return true if date is within six months and not before current day, false otherwise
      */
@@ -105,7 +107,7 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * Check the Date object to ensure it is being scheduled within 6 month timeframe
+     * Check the manager.Date object to ensure it is being scheduled within 6 month timeframe
      *
      * @return true if date is within six months and not before current day, false otherwise
      */
@@ -152,7 +154,7 @@ public class Date implements Comparable<Date> {
 
     /**
      * compare two date objects based on year, month and day
-     * @param date the second Date object in the comparison
+     * @param date the second manager.Date object in the comparison
      * @return 1 if date1 > date2, -1 if date1 < date2, and 0 otherwise
      */
     @Override
@@ -194,7 +196,7 @@ public class Date implements Comparable<Date> {
 
     /**
      * String representation of date object
-     * @return String format of this Date object
+     * @return String format of this manager.Date object
      */
     @Override
     public String toString() {

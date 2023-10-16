@@ -1,5 +1,7 @@
+package manager;
+
 /**
- * Extend the savings class and define MoneyMarket subclass
+ * Extend the savings class and define manager.MoneyMarket subclass
  * @author Kenrick Eagar, Zachary Derish
  */
 
@@ -12,7 +14,7 @@ public class MoneyMarket extends Savings {
 
     /**
      * Constructor for Money Market object.
-     * @param holder Profile object of account holder.
+     * @param holder manager.Profile object of account holder.
      * @param balance double for account.
      * @param withdrawal integer for number of withdrawals.
      */
@@ -38,7 +40,7 @@ public class MoneyMarket extends Savings {
     }
 
     /**
-     * Get the INTEREST_RATE for a MoneyMarket account.
+     * Get the INTEREST_RATE for a manager.MoneyMarket account.
      * @return INTEREST_RATE constant if not a loyal customer, 0.0475 otherwise.
      */
     @Override
@@ -51,7 +53,7 @@ public class MoneyMarket extends Savings {
     }
 
     /**
-     * Get the MONTHLY_FEE for a MoneyMarket account.
+     * Get the MONTHLY_FEE for a manager.MoneyMarket account.
      * @return 0.0 if balance > 2000, 25.0 otherwise, and add 10.0 if withdrawals > 3.
      */
     @Override

@@ -1,3 +1,5 @@
+package manager;
+
 /**
  * Array-Based implementation to hold list of accounts
  * @author Kenrick Eagar, Zachary Derish
@@ -9,7 +11,7 @@ public class AccountDatabase {
     public static final int NOT_FOUND = -1;
 
     /**
-     * AccountDatabase Constructor
+     * manager.AccountDatabase Constructor
      */
     public AccountDatabase(){
         this.accounts = new Account[4];
@@ -27,7 +29,7 @@ public class AccountDatabase {
 
     /**
      * Search for an account in the array
-     * @param account Account object
+     * @param account manager.Account object
      * @return integer representing index of desired element in array
      */
     private int find(Account account) {
@@ -48,7 +50,7 @@ public class AccountDatabase {
         for (int i = 0; i < this.numAcct; i++) {
             String account1Type = this.accounts[i].accountType();
             String account2Type = account.accountType();
-            boolean secondClause = (account1Type.equals("College Checking") && account2Type.equals("Checking")) || (account1Type.equals("Checking") && account2Type.equals("College Checking"));
+            boolean secondClause = (account1Type.equals("College manager.Checking") && account2Type.equals("manager.Checking")) || (account1Type.equals("manager.Checking") && account2Type.equals("College manager.Checking"));
             if (this.accounts[i].getHolder().equals(account.getHolder()) && secondClause) {
                 return true;
             }

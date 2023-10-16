@@ -1,8 +1,12 @@
+package manager;
+
+import manager.*;
+
 import java.util.Scanner;
 
 
 /**
- * Interface used to process command lines in RunProject2
+ * Interface used to process command lines in manager.RunProject2
  * @author Kenrick Eagar, Zachary Derish
  */
 public class TransactionManager {
@@ -27,7 +31,7 @@ public class TransactionManager {
     /**
      * Given a campus code, will return the corresponding campus
      * @param integer representing the campus code
-     * @return Campus enum object
+     * @return manager.Campus enum object
      */
     private Campus getCampus(int code) {
         if (code == 0) {
@@ -42,9 +46,9 @@ public class TransactionManager {
     }
 
     /**
-     * Creates Account object based off commands given in system.in
+     * Creates manager.Account object based off commands given in system.in
      * @param String array representing a single command line from system.in
-     * @return returns constructed Account object
+     * @return returns constructed manager.Account object
      */
     private Account makeAccount(String[] input) {
         // make profile
@@ -222,7 +226,7 @@ public class TransactionManager {
     /**
      * Creates account object with less given information
      * @param String array representing a single command line from system.in
-     * @return Account object constructed based off input
+     * @return manager.Account object constructed based off input
      */
     private Account makeClosingAccount(String[] input) {
         // make profile
@@ -324,7 +328,7 @@ public class TransactionManager {
     /**
      * Given a command extracted from command line input, method will verify and run the specified command
      * @param input an array of strings representing a single line from system.in
-     * @param database AccountDatabase to handle transactions from
+     * @param database manager.AccountDatabase to handle transactions from
      * @return will return string indicating error or which command was successfully executed
      */
     private String runCommand(String[] input, AccountDatabase database) {
@@ -338,7 +342,7 @@ public class TransactionManager {
             return runOpen(input, database);
         }
         if (database.getNumAcct() == 0) {
-            returnMessage = "Account Database is empty!";
+            returnMessage = "manager.Account Database is empty!";
         } else {
             if (command.equals("P")) {
                 database.printSorted();

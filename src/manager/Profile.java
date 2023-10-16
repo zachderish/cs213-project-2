@@ -1,3 +1,5 @@
+package manager;
+
 /**
  * Define profile object/class
  * @author Kenrick Eagar, Zachary Derish
@@ -9,7 +11,7 @@ public class Profile implements Comparable<Profile>{
     private Date dob;
 
     /**
-    * Profile Constructor
+    * manager.Profile Constructor
     *@param fname, profile first name
     *@param lname, profile last name
     *@param dob date object representing date of birth
@@ -21,7 +23,7 @@ public class Profile implements Comparable<Profile>{
     }
 
     /**
-     * Profile Constructor with String representation of Date
+     * manager.Profile Constructor with String representation of manager.Date
      * @param fname String representation of profile first name
      * @param lname String representation of profile last name
      * @param dob string representation of date of birth
@@ -50,14 +52,14 @@ public class Profile implements Comparable<Profile>{
 
     /**
      *Getter method to retrieve date of birth of a profile
-     * @return Date object representing date of birth of profile
+     * @return manager.Date object representing date of birth of profile
      */
     public Date getDob(){
         return this.dob;
     }
 
     /**
-     * compareTo method for Profile objects by comparing last name, first name and date of birth.
+     * compareTo method for manager.Profile objects by comparing last name, first name and date of birth.
      * @param profile the object to be compared.
      * @return 1 if this.profile is greater, -1 if this.profile is less than profile, 0 otherwise.
      */

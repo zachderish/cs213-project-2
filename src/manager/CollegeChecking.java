@@ -1,3 +1,5 @@
+package manager;
+
 /**
  * Extend the checking class and define collegeChecking subclass
  * @author Kenrick Eagar, Zachary Derish
@@ -10,10 +12,10 @@ public class CollegeChecking extends Checking {
     private Campus campus; //campus code
 
     /**
-     * Constructor for College Checking object.
-     * @param holder Profile object of account holder.
+     * Constructor for College manager.Checking object.
+     * @param holder manager.Profile object of account holder.
      * @param balance integer for account.
-     * @param campus Campus code.
+     * @param campus manager.Campus code.
      */
     public CollegeChecking(Profile holder, double balance, Campus campus) {
         super(holder, balance);
@@ -21,7 +23,7 @@ public class CollegeChecking extends Checking {
     }
 
     /**
-     * Get INTEREST_RATE for a CollegeChecking account.
+     * Get INTEREST_RATE for a manager.CollegeChecking account.
      * @return INTEREST_RATE constant.
      */
     @Override
@@ -30,7 +32,7 @@ public class CollegeChecking extends Checking {
     }
 
     /**
-     * Get MONTHLY_FEE for a CollegeChecking account.
+     * Get MONTHLY_FEE for a manager.CollegeChecking account.
      * @return MONTHLY_FEE constant.
      */
     @Override
@@ -39,12 +41,12 @@ public class CollegeChecking extends Checking {
     }
 
     /**
-     * String representation of Account Type
+     * String representation of manager.Account Type
      * @return String representing the account type
      */
     @Override
     public String accountType(){
-        return "College Checking";
+        return "College manager.Checking";
     }
 
     /**
@@ -78,7 +80,7 @@ public class CollegeChecking extends Checking {
     @Override
     public String toString() {
         String superToString = super.toString();
-        superToString = superToString.replace("Checking::", "");
-        return "College Checking::" + superToString + "::" + this.getCampus();
+        superToString = superToString.replace("manager.Checking::", "");
+        return "College manager.Checking::" + superToString + "::" + this.getCampus();
     }
 }

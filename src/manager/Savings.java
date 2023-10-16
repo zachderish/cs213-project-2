@@ -1,3 +1,4 @@
+package manager;
 
 /**
  * Extend the account class and define savings subclass
@@ -12,8 +13,8 @@ public class Savings extends Account {
     protected boolean isLoyal; //loyal customer status
 
     /**
-     * Constructor for Savings object.
-     * @param holder Profile object of account holder.
+     * Constructor for manager.Savings object.
+     * @param holder manager.Profile object of account holder.
      * @param balance integer for account.
      * @param isLoyal boolean for loyal customer status.
      */
@@ -23,7 +24,7 @@ public class Savings extends Account {
     }
 
     /**
-     * Get the INTEREST_RATE for a Savings account.
+     * Get the INTEREST_RATE for a manager.Savings account.
      * @return INTEREST_RATE constant if not a loyal customer, 0.0425 otherwise.
      */
     @Override
@@ -41,11 +42,11 @@ public class Savings extends Account {
      */
     @Override
     public String accountType(){
-        return "Savings";
+        return "manager.Savings";
     }
 
     /**
-     * Get the MONTHLY_FEE for a Savings account.
+     * Get the MONTHLY_FEE for a manager.Savings account.
      * @return MONTHLY_FEE constant if balance < 500, 0.0 otherwise.
      */
     @Override
@@ -77,7 +78,7 @@ public class Savings extends Account {
     @Override
     public String toString() {
         String account = super.toString();
-        account = "Savings::" + account;
+        account = "manager.Savings::" + account;
         if (this.isLoyal) {
             account += "::is loyal";
         }

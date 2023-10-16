@@ -1,12 +1,9 @@
 package manager;
 
-import manager.*;
-
 import java.util.Scanner;
 
-
 /**
- * Interface used to process command lines in manager.RunProject2
+ * Interface used to process command lines in RunProject2.
  * @author Kenrick Eagar, Zachary Derish
  */
 public class TransactionManager {
@@ -15,9 +12,9 @@ public class TransactionManager {
     public static final int NOT_FOUND = -1;
 
     /**
-     * Check to see if command inputted is a valid executable command
-     * @param input String which will represent the command we will be testing for validity
-     * @return will return true (boolean) if input is listed in command array, otherwise false
+     * Check to see if command inputted is a valid executable command.
+     * @param input String which will represent the command we will be testing for validity.
+     * @return will return true (boolean) if input is listed in command array, otherwise false.
      */
     private boolean validCommand(String input) {
         for (String command : COMMANDS) {
@@ -30,8 +27,8 @@ public class TransactionManager {
 
     /**
      * Given a campus code, will return the corresponding campus
-     * @param integer representing the campus code
-     * @return manager.Campus enum object
+     * @param code integer representing the campus code
+     * @return Campus enum object
      */
     private Campus getCampus(int code) {
         if (code == 0) {
@@ -46,9 +43,9 @@ public class TransactionManager {
     }
 
     /**
-     * Creates manager.Account object based off commands given in system.in
-     * @param String array representing a single command line from system.in
-     * @return returns constructed manager.Account object
+     * Creates Account object based off commands given in system.in.
+     * @param input String array representing a single command line from system.in.
+     * @return returns constructed Account object.
      */
     private Account makeAccount(String[] input) {
         // make profile
@@ -86,9 +83,9 @@ public class TransactionManager {
     }
 
     /**
-     * Tells the input length of a single command line from system.in
-     * @param String array representing a single command line from system.in
-     * @return int the amount of commands/info in a single command line
+     * Tells the input length of a single command line from system.in.
+     * @param input String array representing a single command line from system.in.
+     * @return int the amount of commands/info in a single command line.
      */
     private int getInputLength(String[] input) {
         String accountType = input[1];
@@ -105,10 +102,10 @@ public class TransactionManager {
     // need to handle future dob and invalid date exceptions
 
     /**
-     * Method to try and catch possible exceptions encountered from standard input
-     * @param String array representing a single command line from system.in
-     * @param database object, the datebase that will store all Accounts
-     * @return String indicating the potential errors
+     * Method to try and catch possible exceptions encountered from standard input.
+     * @param input String array representing a single command line from system.in.
+     * @param database object, the datebase that will store all Accounts.
+     * @return String indicating the potential errors.
      */
     private String handleOpenExceptions(String[] input, AccountDatabase database) {
         if (input.length < getInputLength(input)) {
@@ -139,7 +136,7 @@ public class TransactionManager {
 
     /**
      * Method runs the open account command
-     * @param String array representing a single command line from system.in
+     * @param input String array representing a single command line from system.in
      * @param database object, the datebase that will store all Accounts
      * @return String indicating if command was successfully executed.
      */
@@ -177,10 +174,11 @@ public class TransactionManager {
             return returnString + " is already in the database.";
         }
     }
+
     /**
-     * Indicates if a given String is a number or not
-     * @param String number, the number we are testing
-     * @return true if it is a number, false otherwise
+     * Indicates if a given String is a number or not.
+     * @param number String number, the number we are testing.
+     * @return true if it is a number, false otherwise.
      */
     private boolean isNumber(String number){
         try {
@@ -191,9 +189,9 @@ public class TransactionManager {
         return true;
     }
     /**
-     * Method runs the withdraw command
-     * @param String array representing a single command line from system.in
-     * @param database object, the datebase that will store all Accounts
+     * Method runs the withdrawal command.
+     * @param input String array representing a single command line from system.in.
+     * @param database object, the datebase that will store all Accounts.
      * @return String indicating if command was successfully executed.
      */
     private String runWithdraw(String[] input, AccountDatabase database){
@@ -223,10 +221,11 @@ public class TransactionManager {
         database.withdraw(shellAccount);
         return returnString + " Withdraw - balance updated.";
     }
+
     /**
-     * Creates account object with less given information
-     * @param String array representing a single command line from system.in
-     * @return manager.Account object constructed based off input
+     * Creates account object with less given information.
+     * @param input String array representing a single command line from system.in.
+     * @return Account object constructed based off input.
      */
     private Account makeClosingAccount(String[] input) {
         // make profile
@@ -263,9 +262,9 @@ public class TransactionManager {
         }
     }
     /**
-     * Method runs the close command
-     * @param String array representing a single command line from system.in
-     * @param database object, the datebase that will store all Accounts
+     * Method runs the close command.
+     * @param input String array representing a single command line from system.in.
+     * @param database object, the datebase that will store all Accounts.
      * @return String indicating if command was successfully executed.
      */
     private String runClose(String[] input, AccountDatabase database) {
@@ -289,10 +288,11 @@ public class TransactionManager {
             return fname + " " + lname + " " + dob + "(" + accountType + ") is not in the database.";
         }
     }
+
     /**
-     * Method runs the deposit command
-     * @param String array representing a single command line from system.in
-     * @param database object, the datebase that will store all Accounts
+     * Method runs the deposit command.
+     * @param input String array representing a single command line from system.in.
+     * @param database object, the datebase that will store all Accounts.
      * @return String indicating if command was successfully executed.
      */
     private String runDeposit(String[] input, AccountDatabase database) {
@@ -326,10 +326,10 @@ public class TransactionManager {
 
 
     /**
-     * Given a command extracted from command line input, method will verify and run the specified command
-     * @param input an array of strings representing a single line from system.in
-     * @param database manager.AccountDatabase to handle transactions from
-     * @return will return string indicating error or which command was successfully executed
+     * Given a command extracted from command line input, method will verify and run the specified command.
+     * @param input an array of strings representing a single line from system.in.
+     * @param database AccountDatabase to handle transactions from.
+     * @return will return string indicating error or which command was successfully executed.
      */
     private String runCommand(String[] input, AccountDatabase database) {
         String returnMessage = "";
@@ -368,7 +368,7 @@ public class TransactionManager {
     }
 
     /**
-     *Void method to process lines from standard input
+     * Void method to process lines from standard input.
      */
     public void run () {
         Scanner scanner = new Scanner(System.in);

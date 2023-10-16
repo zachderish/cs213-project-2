@@ -3,20 +3,35 @@ package manager;
 import java.text.DecimalFormat;
 
 /**
- * Define abstract manager.Account class
+ * Define abstract Account class.
  * @author Kenrick Eagar, Zachary Derish
  */
 
 public abstract class Account implements Comparable<Account> {
     protected Profile holder;
     protected double balance;
+
+    /**
+     * Abstract method for Account monthly interest.
+     * @return monthly interest as a double.
+     */
     public abstract double monthlyInterest();
+
+    /**
+     * Abstract method for Account monthly fee.
+     * @return monthly fee as a double.
+     */
     public abstract double monthlyFee();
+
+    /**
+     * Abstract method for Account type.
+     * @return Account type as a String.
+     */
     public abstract String accountType();
 
     /**
-     * manager.Account object constructor.
-     * @param holder manager.Profile object of account holder.
+     * Account object constructor.
+     * @param holder Profile object of account holder.
      * @param balance integer for account.
      */
     public Account(Profile holder, double balance){
@@ -73,9 +88,9 @@ public abstract class Account implements Comparable<Account> {
     }
 
     /**
-     * Generic equals method to compare Accounts and see if they are equivalent or not
-     * @param Account object we will be comparing
-     * @return Boolean true if Accounts are equal, false otherwise
+     * Generic equals method to compare Accounts and test equivalency.
+     * @param obj Account object to be compared.
+     * @return Boolean true if Accounts are equal, false otherwise.
      */
     @Override
     public boolean equals(Object obj){
@@ -88,22 +103,9 @@ public abstract class Account implements Comparable<Account> {
         return false;
     }
 
-    //test for equals methods
-    public static void main(String[] args){
-        Date d1 = new Date("1/22/2002");
-        Profile p1 = new Profile("Sam", "Sullet", d1);
-        Account a1 = new CollegeChecking(p1, 200.00, Campus.CAMDEN);
-
-        Date d2 = new Date("1/22/2002");
-        Profile p2 = new Profile("Sam", "Sullet", d2);
-        Account a2 = new Checking(p2, 200.00);
-
-        System.out.println(a1.compareTo(a2));
-    }
-
     /**
-     * Prints the accounts profile information and balance
-     * @return String stating manager.Account objects profile and balance information
+     * Converts the accounts profile information and balance to a String format.
+     * @return String stating Account objects profile and balance information.
      */
     @Override
     public String toString() {

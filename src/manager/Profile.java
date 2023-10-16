@@ -1,7 +1,7 @@
 package manager;
 
 /**
- * Define profile object/class
+ * Define profile object/class.
  * @author Kenrick Eagar, Zachary Derish
  */
 
@@ -11,10 +11,10 @@ public class Profile implements Comparable<Profile>{
     private Date dob;
 
     /**
-    * manager.Profile Constructor
-    *@param fname, profile first name
-    *@param lname, profile last name
-    *@param dob date object representing date of birth
+    * Profile Constructor.
+    * @param fname, profile first name.
+    * @param lname, profile last name.
+    * @param dob date object representing date of birth.
     */
     public Profile(String fname, String lname, Date dob){
         this.fname = fname;
@@ -23,10 +23,10 @@ public class Profile implements Comparable<Profile>{
     }
 
     /**
-     * manager.Profile Constructor with String representation of manager.Date
-     * @param fname String representation of profile first name
-     * @param lname String representation of profile last name
-     * @param dob string representation of date of birth
+     * Profile Constructor with String representation of Date.
+     * @param fname String representation of profile first name.
+     * @param lname String representation of profile last name.
+     * @param dob string representation of date of birth.
      */
     public Profile(String fname, String lname, String dob){
         this.fname = fname;
@@ -35,24 +35,24 @@ public class Profile implements Comparable<Profile>{
     }
 
     /**
-     *Getter method to retrieve first name of a profile
-     * @return String representation of first name
+     * Getter method to retrieve first name of a profile.
+     * @return String representation of first name.
      */
     public String getFname(){
         return this.fname;
     }
 
     /**
-     *Getter method to retrieve last name of a profile
-     * @return String representation of last name
+     * Getter method to retrieve last name of a profile.
+     * @return String representation of last name.
      */
     public String getLname(){
         return this.lname;
     }
 
     /**
-     *Getter method to retrieve date of birth of a profile
-     * @return manager.Date object representing date of birth of profile
+     * Getter method to retrieve date of birth of a profile.
+     * @return manager.Date object representing date of birth of profile.
      */
     public Date getDob(){
         return this.dob;
@@ -88,9 +88,9 @@ public class Profile implements Comparable<Profile>{
     }
 
     /**
-     * Compares two profiles to see if they are equal or not
-     * @param The profile object we want to compare to
-     * @return returns true if profiles are equivalent, false otherwise
+     * Compares two profiles to see if they are equal or not.
+     * @param obj Profile object we want to compare to.
+     * @return returns true if profiles are equivalent, false otherwise.
      */
     @Override
     public boolean equals(Object obj) {
@@ -104,8 +104,8 @@ public class Profile implements Comparable<Profile>{
     }
 
     /**
-     * String showing first name, last name, and date of birth of profile
-     * @return String representation of profile
+     * String showing first name, last name, and date of birth of profile.
+     * @return String representation of profile.
      */
     @Override
     public String toString() {
@@ -113,13 +113,5 @@ public class Profile implements Comparable<Profile>{
         String dob = this.getDob().toString();
         return name + dob;
     }
-
-    public static void main(String[] args) {
-        Date date = new Date("1/22/2002");
-        Profile profile1 = new Profile("Zach", "D", date);
-        Profile profile2 = new Profile("Zach", "D", date);
-        System.out.println(profile1.equals(profile2));
-    }
-
 
 }

@@ -1,7 +1,7 @@
 package manager;
 
 /**
- * Extend the savings class and define manager.MoneyMarket subclass
+ * Extend the savings class and define MoneyMarket subclass.
  * @author Kenrick Eagar, Zachary Derish
  */
 
@@ -25,15 +25,15 @@ public class MoneyMarket extends Savings {
     }
 
     /**
-     * Getter method to obtain number of withdrawals
-     * @return the number of withdrawals account has
+     * Getter method to obtain number of withdrawals.
+     * @return the number of withdrawals account has.
      */
     public int getWithdrawal() {
         return this.withdrawal;
     }
 
     /**
-     * Increases the withdrawal of account by 1
+     * Increases the withdrawal of account by 1.
      */
     public void incrementWithdrawal () {
         this.withdrawal++;
@@ -80,7 +80,7 @@ public class MoneyMarket extends Savings {
     }
 
     /**
-     * @return String representing accountType of object
+     * @return String representing accountType of object.
      */
     @Override
     public String accountType(){
@@ -88,9 +88,9 @@ public class MoneyMarket extends Savings {
     }
 
     /**
-     * Given an account will check to see if object type and information is equal
-     * @param Account object we want to compare to
-     * @return boolean indicating true of Accounts are equal, false otherwise
+     * Given an account will check to see if object type and information is equal.
+     * @param obj Account object we want to compare to.
+     * @return boolean indicating true if the Accounts are equal, false otherwise.
      */
     @Override
     public boolean equals(Object obj){
@@ -103,8 +103,8 @@ public class MoneyMarket extends Savings {
         return false;
     }
     /**
-     * String representation of profile information, account type, and number of withdrawals
-     * @return String representation of profile information, account type, and number of withdrawals
+     * String representation of profile information, account type, and number of withdrawals.
+     * @return String representation of profile information, account type, and number of withdrawals.
      */
     @Override
     public String toString() {

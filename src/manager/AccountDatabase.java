@@ -3,17 +3,16 @@ package manager;
 import java.text.DecimalFormat;
 
 /**
- * Array-Based implementation to hold list of accounts
+ * Array-Based implementation to hold list of accounts.
  * @author Kenrick Eagar, Zachary Derish
  */
-
 public class AccountDatabase {
     private Account [] accounts; //list of various types of accounts
     private int numAcct; //number of accounts in the array
     public static final int NOT_FOUND = -1;
 
     /**
-     * manager.AccountDatabase Constructor
+     * AccountDatabase Constructor.
      */
     public AccountDatabase(){
         this.accounts = new Account[4];
@@ -22,17 +21,17 @@ public class AccountDatabase {
     }
 
     /**
-     * returns the number of accounts in database
-     * @return integer, the number of accounts in database
+     * returns the number of accounts in database.
+     * @return integer, the number of accounts in database.
      */
     public int getNumAcct() {
         return this.numAcct;
     }
 
     /**
-     * Search for an account in the array
-     * @param account manager.Account object
-     * @return integer representing index of desired element in array
+     * Search for an account in the array.
+     * @param account manager.Account object.
+     * @return integer representing index of desired element in array.
      */
     private int find(Account account) {
         for (int i = 0; i < this.numAcct; i++) {
@@ -44,9 +43,9 @@ public class AccountDatabase {
     }
 
     /**
-     * Will check to see if account database contains an account based off profile
-     * @param account the account we want to check if in database
-     * @return boolean indicating true if profile is in database, false otherwise
+     * Will check to see if account database contains an account based off profile.
+     * @param account the account we want to check if in database.
+     * @return boolean indicating true if profile is in database, false otherwise.
      */
     public boolean containsProfile(Account account) {
         for (int i = 0; i < this.numAcct; i++) {
@@ -61,12 +60,12 @@ public class AccountDatabase {
     }
 
     /**
-     * Given a select amount of elements of an object, method will attempt to find the account
-     * @param fname the first name of account holder
-     * @param lname the last name of account holder
-     * @param dob the date of birth of account holder
-     * @param accountType the accountype we are attempting to locate
-     * @return the index of the element if it is in the database
+     * Given a select amount of elements of an object, method will attempt to find the account.
+     * @param fname the first name of account holder.
+     * @param lname the last name of account holder.
+     * @param dob the date of birth of account holder.
+     * @param accountType the account type we are attempting to locate.
+     * @return the index of the element if it is in the database.
      */
     private int findByElements(String fname, String lname, Date dob, String accountType){
         for(int i = 0; i < numAcct; i++){
@@ -85,7 +84,7 @@ public class AccountDatabase {
 
 
     /**
-     * Grow the array capacity by 4
+     * Grow the array capacity by 4.
      */
     private void grow(){
         int n = this.numAcct;
@@ -99,9 +98,9 @@ public class AccountDatabase {
     }
 
     /**
-    *  Checks to see if given account is en element of accounts array
-    * @param account object we are searching for
-    * @return boolean indicating true if it exists in array false otherwise
+    * Checks to see if given account is en element of the accounts array.
+    * @param account object we are searching for.
+    * @return boolean indicating true if it exists in array false otherwise.
     */
     public boolean contains(Account account){//overload if necessary
         if (this.find(account) == NOT_FOUND) {
@@ -111,8 +110,8 @@ public class AccountDatabase {
     }
 
     /**
-     * Checker to see if there is space availability in accounts array
-     * @return boolean indicating true if there is space false otherwise
+     * Checker to see if there is space availability in accounts array.
+     * @return boolean indicating true if there is space false otherwise.
      */
     private boolean hasSpace(){
         if(this.accounts[accounts.length-1] != null){
@@ -122,9 +121,9 @@ public class AccountDatabase {
     }
 
     /**
-     * Adds new account to accounts array
-     * @param account object we are adding
-     * @return boolean indicating true if it was successfully added, false otherwise
+     * Adds new account to accounts array.
+     * @param account object we are adding.
+     * @return boolean indicating true if it was successfully added, false otherwise.
      */
     public boolean open(Account account){
         if (this.contains(account)) {
@@ -144,9 +143,9 @@ public class AccountDatabase {
     }
 
     /**
-     * Close given account
-     * @param account object we will be removing
-     * @return boolean indicating true if account has been successfully removed, false otherwise
+     * Close given account.
+     * @param account object we will be removing.
+     * @return boolean indicating true if account has been successfully removed, false otherwise.
      */
     public boolean close(Account account){
         int index = this.find(account);
@@ -162,9 +161,9 @@ public class AccountDatabase {
     }
 
     /**
-     *Given an account, get the account balance
-     * @param account the account we want to get balance of
-     * @return double representing balance of account
+     * Given an account, get the account balance.
+     * @param account the account we want to get balance of.
+     * @return double representing balance of account.
      */
     public double getAccountBalance(Account account){
         int index = find(account);
@@ -191,7 +190,7 @@ public class AccountDatabase {
         if(index != NOT_FOUND){ //as long as it exists
             double currentBalance = accounts[index].getBalance(); //get the current balance of the real account
             int balanceLimit = 0;
-            if(newBalance >= balanceLimit){ //compare amounts and make sure theres enough money to withdraw
+            if(newBalance >= balanceLimit){ //compare amounts and make sure there's enough money to withdraw
                 newBalance = roundDouble(newBalance);
                 accounts[index].setBalance(newBalance); //set the balance of the real account
                 if (accounts[index].accountType().equals("Money Market")) {
@@ -218,9 +217,9 @@ public class AccountDatabase {
     }
 
     /**
-     * Method to round account balance
-     * @param double the balance we will be rounding
-     * @return the rounded double of input number
+     * Method to round account balance.
+     * @param amount the balance we will be rounding.
+     * @return the rounded double of input number.
      */
     private double roundDouble(double amount) {
         double scale = Math.pow(10, 2);
@@ -229,7 +228,7 @@ public class AccountDatabase {
     }
 
     /**
-     * Print the sorted Accounts
+     * Print the sorted Accounts.
      */
     public void printSorted(){ // insertion sort
         System.out.println("\n* Accounts sorted by account type and profile.");
@@ -253,7 +252,7 @@ public class AccountDatabase {
     }
 
     /**
-     * Prints the accounts in order with respect to fees and interests
+     * Prints the accounts in order with respect to fees and interests.
      */
     public void printFeesAndInterests() {
         System.out.println("\n* list of accounts with fee and monthly interest");
@@ -287,7 +286,7 @@ public class AccountDatabase {
     }
 
     /**
-     * Prints the accounts in order with respect to any updates that have occurred
+     * Prints the accounts in order with respect to any updates that have occurred.
      */
     public void printUpdatedBalances(){
         System.out.println("* list of accounts with fees and interests applied.");
@@ -302,46 +301,4 @@ public class AccountDatabase {
 
         System.out.println("* end of list.");
     }
-
-    // Testbed main, will be DELETED later
-    public static void main(String[] args) {
-        // testing open
-        AccountDatabase accounts1 = new AccountDatabase();
-
-        Date dob1 = new Date(2002, 1, 22);
-        Profile profile1 = new Profile("Zach", "D", dob1);
-        Checking checkingAccount1 = new Checking(profile1, 1000);
-        accounts1.open(checkingAccount1);
-
-        Date dob2 = new Date(2004, 10, 9);
-        Profile profile2 = new Profile("Tony", "D", dob2);
-        Checking checkingAccount2 = new Checking(profile2, 4000);
-        accounts1.open(checkingAccount2);
-
-        accounts1.printSorted();
-        System.out.println("End of test1");
-
-        // testing close
-        accounts1.close(checkingAccount1);
-
-        accounts1.printSorted();
-        System.out.println("End of test2");
-
-        // testing withdrawal
-        Date dob3 = new Date(2004, 10, 9);
-        Profile profile3 = new Profile("Tony", "D", dob3);
-        Checking checkingAccount3 = new Checking(profile3, 1000);
-        boolean withdrawal = accounts1.withdraw(checkingAccount3);
-        System.out.println(withdrawal);
-        System.out.println(checkingAccount2.getBalance());
-
-        // testing deposit
-        Date dob4 = new Date(2004, 10, 9);
-        Profile profile4 = new Profile("Tony", "D", dob4);
-        Checking checkingAccount4 = new Checking(profile4, 5000);
-        accounts1.deposit(checkingAccount4);
-        System.out.println(checkingAccount2.getBalance());
-
-    }
-
 }

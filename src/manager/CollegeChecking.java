@@ -1,7 +1,7 @@
 package manager;
 
 /**
- * Extend the checking class and define collegeChecking subclass
+ * Extend the checking class and define collegeChecking subclass.
  * @author Kenrick Eagar, Zachary Derish
  */
 
@@ -12,10 +12,10 @@ public class CollegeChecking extends Checking {
     private Campus campus; //campus code
 
     /**
-     * Constructor for College manager.Checking object.
-     * @param holder manager.Profile object of account holder.
+     * Constructor for College Checking object.
+     * @param holder Profile object of account holder.
      * @param balance integer for account.
-     * @param campus manager.Campus code.
+     * @param campus Campus code.
      */
     public CollegeChecking(Profile holder, double balance, Campus campus) {
         super(holder, balance);
@@ -23,7 +23,7 @@ public class CollegeChecking extends Checking {
     }
 
     /**
-     * Get INTEREST_RATE for a manager.CollegeChecking account.
+     * Get INTEREST_RATE for a CollegeChecking account.
      * @return INTEREST_RATE constant.
      */
     @Override
@@ -32,7 +32,7 @@ public class CollegeChecking extends Checking {
     }
 
     /**
-     * Get MONTHLY_FEE for a manager.CollegeChecking account.
+     * Get MONTHLY_FEE for a CollegeChecking account.
      * @return MONTHLY_FEE constant.
      */
     @Override
@@ -41,8 +41,8 @@ public class CollegeChecking extends Checking {
     }
 
     /**
-     * String representation of manager.Account Type
-     * @return String representing the account type
+     * String representation of Account Type.
+     * @return String representing the account type.
      */
     @Override
     public String accountType(){
@@ -50,9 +50,9 @@ public class CollegeChecking extends Checking {
     }
 
     /**
-     * Given an account will check to see if object type and information is equal
-     * @param Account object we want to compare to
-     * @return boolean indicating true of Accounts are equal, false otherwise
+     * Given an account will check to see if object type and information is equal.
+     * @param obj Account object we want to compare to.
+     * @return boolean indicating true if the Accounts are equal, false otherwise.
      */
     @Override
     public boolean equals(Object obj){
@@ -66,16 +66,16 @@ public class CollegeChecking extends Checking {
     }
 
     /**
-     * Returns the campus of collegeChecking account
-     * @return returns the campus of collegeChecking account
+     * Returns the campus of collegeChecking account.
+     * @return returns the campus of collegeChecking account.
      */
     public Campus getCampus() {
         return this.campus;
     }
 
     /**
-     * String representation of profile information, account type, and campus
-     * @return String representation of profile information, account type, and number of withdrawals
+     * String representation of profile information, account type, and campus.
+     * @return String representation of profile information, account type, and number of withdrawals.
      */
     @Override
     public String toString() {

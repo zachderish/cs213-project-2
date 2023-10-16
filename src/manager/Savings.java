@@ -37,8 +37,8 @@ public class Savings extends Account {
     }
 
     /**
-     * Returns string representation of the account type
-     * @return string indicating the type of account
+     * Returns string representation of the account type.
+     * @return string indicating the type of account.
      */
     @Override
     public String accountType(){
@@ -60,6 +60,11 @@ public class Savings extends Account {
         return MONTHLY_FEE;
     }
 
+    /**
+     * Compares two savings accounts to see if they are equal or not.
+     * @param obj Savings object we want to compare to.
+     * @return returns true if the Accounts are equivalent, false otherwise.
+     */
     @Override
     public boolean equals(Object obj){
         if(obj instanceof Savings){
@@ -72,8 +77,8 @@ public class Savings extends Account {
     }
 
     /**
-     * Method displays general account information and the account type and loyal status
-     * @return String displaying account type and loyal status
+     * Method displays general account information and the account type and loyal status.
+     * @return String displaying account type and loyal status.
      */
     @Override
     public String toString() {

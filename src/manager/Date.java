@@ -3,7 +3,7 @@ package manager;
 import java.util.Calendar;
 
 /**
- * Define the abstract data type manager.Date and its methods
+ * Define the abstract data type manager.Date and its methods.
  * @author Kenrick Eagar, Zachary Derish
  */
 public class Date implements Comparable<Date> {
@@ -30,11 +30,10 @@ public class Date implements Comparable<Date> {
     private final int ONE_DAY = 1;
 
     /**
-     * manager.Date constructor
-     *
-     * @param year  the year associated with the manager.Date
-     * @param month the month associated with the manager.Date
-     * @param day   the day associated with the manager.Date
+     * Date constructor.
+     * @param year  the year associated with the Date.
+     * @param month the month associated with the Date.
+     * @param day   the day associated with the Date.
      */
     public Date(int year, int month, int day) {
         this.year = year;
@@ -43,8 +42,8 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * Constructs date object given string representation of date
-     * @param String representation of date
+     * Constructs date object given string representation of date.
+     * @param date String representation of date.
      */
     public Date(String date){
         String[] temp = date.split("/");
@@ -55,10 +54,10 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * returns true if it's a leap year false otherwise
+     * returns true if it's a leap year false otherwise.
      *
-     * @param year the year to be checked for leap year
-     * @return true if leap year, false otherwise
+     * @param year the year to be checked for leap year.
+     * @return true if leap year, false otherwise.
      */
     private boolean isLeapYear(int year) {
         if (year % QUADRENNIAL == 0 || year % QUATERCENTENNIAL == 0) {
@@ -68,11 +67,11 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * Return number of days in a month based on month itself and leap year status
+     * Return number of days in a month based on month itself and leap year status.
      *
-     * @param month month of the year represented as int
-     * @param year  year represented as int
-     * @return int of number of days contained in month
+     * @param month month of the year represented as int.
+     * @param year  year represented as int.
+     * @return int of number of days contained in month.
      */
     public int numberOfDays(int month, int year) { //returns the number of days given the month and year
         if (month == APRIL || month == JUNE || month == SEPTEMBER || month == NOVEMBER) { //if its any of those months they have 30 days
@@ -89,9 +88,8 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * Check the manager.Date object to ensure year month and day are all valid inputs
-     *
-     * @return true if date is within six months and not before current day, false otherwise
+     * Check the Date object to ensure year month and day are all valid inputs.
+     * @return true if date is within six months and not before current day, false otherwise.
      */
     public boolean isValid() {
         int inputMonth = this.month;
@@ -107,9 +105,8 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * Check the manager.Date object to ensure it is being scheduled within 6 month timeframe
-     *
-     * @return true if date is within six months and not before current day, false otherwise
+     * Check the Date object to ensure it is being scheduled within 6 month timeframe.
+     * @return true if date is within six months and not before current day, false otherwise.
      */
     public boolean futureOrToday() {
         // create calendar object for today
@@ -123,8 +120,8 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * Checks to see if date of birth if under 16 years of age
-     * @return boolean indicating true if date of birth is under 16 years of age false otherwise
+     * Checks to see if date of birth if under 16 years of age.
+     * @return boolean indicating true if date of birth is under 16 years of age false otherwise.
      */
     public boolean underSixteen() {
         Calendar birthday = Calendar.getInstance();
@@ -138,8 +135,8 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * Checks to see if date of birth if over 24 years of age
-     * @return boolean indicating true if date of birth is over 24 years of age false otherwise
+     * Checks to see if date of birth if over 24 years of age.
+     * @return boolean indicating true if date of birth is over 24 years of age false otherwise.
      */
     public boolean overTwentyFour() {
         Calendar birthday = Calendar.getInstance();
@@ -153,9 +150,9 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * compare two date objects based on year, month and day
-     * @param date the second manager.Date object in the comparison
-     * @return 1 if date1 > date2, -1 if date1 < date2, and 0 otherwise
+     * Compare two date objects based on year, month and day.
+     * @param date the second manager.Date object in the comparison.
+     * @return 1 if date1 > date2, -1 if date1 < date2, and 0 otherwise.
      */
     @Override
     public int compareTo(Date date) {
@@ -178,9 +175,9 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * Checks if two date objects are equal
-     * @param Date object we are looking to compare
-     * @return boolean indicating if dates are equal, false otherwise
+     * Checks if two date objects are equal.
+     * @param obj Date object we are looking to compare.
+     * @return boolean indicating if dates are equal, false otherwise.
      */
     @Override
     public boolean equals(Object obj) {
@@ -195,8 +192,8 @@ public class Date implements Comparable<Date> {
 
 
     /**
-     * String representation of date object
-     * @return String format of this manager.Date object
+     * String representation of date object.
+     * @return String format of this Date object.
      */
     @Override
     public String toString() {

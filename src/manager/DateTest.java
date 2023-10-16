@@ -4,6 +4,10 @@ import manager.Date;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * JUnit test class for Date isValid method.
+ * @author Kenrick Eagar
+ */
 class DateTest {
 
     @Test

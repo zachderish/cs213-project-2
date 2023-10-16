@@ -1,7 +1,7 @@
 package manager;
 
 /**
- * Define manager.Campus enum class
+ * Define Campus enum class.
  * @author Kenrick Eagar, Zachary Derish
  */
 
@@ -13,15 +13,15 @@ public enum Campus {
     private final int campusCode;
 
     /**
-     * Given campus code, will return corresponding enum manager.Campus object
-     * @param integer representing campus code
+     * Given campus code, will return corresponding enum Campus object.
+     * @param campusCode integer representing campus code.
      */
     Campus(int campusCode) {
         this.campusCode = campusCode;
     }
 
     /**
-     *Getter method to obtain campus code from manager.Campus object
+     * Getter method to obtain campus code from Campus object
      * @return integer representing campus code
      */
     public int getCampusCode() {

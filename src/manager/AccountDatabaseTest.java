@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * JUnit test class for AccountDatabase close method.
+ * @author Kenrick Eagar
+ */
 class AccountDatabaseTest {
 
     @Test
